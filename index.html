@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kairo — Equipo 33 · Sprint 3</title>
+  <title>Kairo — Release 3 DevOps · Equipo 33</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,7 +40,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(0, 28, 51, 0.92);
+      background: rgba(0, 28, 51, 0.95);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -111,8 +112,8 @@
       background: linear-gradient(90deg, var(--navy) 0%, var(--oracle) 100%);
     }
 
-    /* ── HERO ────────────────────────────────────────────────────────── */
-    #hero {
+    /* ── HERO / PORTADA ──────────────────────────────────────────────── */
+    #portada {
       min-height: 100vh;
       background: var(--navy-deep);
       background-image:
@@ -141,7 +142,7 @@
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 20px;
       padding: 0.3rem 0.9rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
@@ -153,12 +154,12 @@
     }
 
     .hero-title {
-      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-size: clamp(3rem, 8vw, 6rem);
       font-weight: 900;
       color: #fff;
       letter-spacing: -0.04em;
       line-height: 1;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.75rem;
     }
 
     .hero-title em {
@@ -170,37 +171,65 @@
     }
 
     .hero-sub {
-      font-size: 1.125rem;
-      color: rgba(255,255,255,0.5);
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
       font-weight: 500;
       margin-bottom: 3rem;
     }
 
-    .hero-meta {
+    /* Team grid en la portada */
+    .portada-team {
       display: flex;
-      gap: 1rem;
-      align-items: center;
+      gap: 1.25rem;
       justify-content: center;
       flex-wrap: wrap;
+      max-width: 900px;
+      width: 100%;
     }
 
-    .hero-pill {
-      font-size: 0.8125rem;
+    .portada-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .portada-photo {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      overflow: hidden;
+    }
+
+    .portada-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .portada-photo.oracle { background: rgba(199,70,52,0.3); border-color: rgba(199,70,52,0.5); }
+    .portada-photo.mid    { background: rgba(0,85,135,0.4); border-color: rgba(0,85,135,0.6); }
+
+    .portada-name {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .portada-role {
+      font-size: 0.6875rem;
       font-weight: 600;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-    }
-
-    .hero-pill.navy {
-      background: rgba(0,56,101,0.6);
-      color: rgba(255,255,255,0.75);
-      border: 1px solid rgba(0,85,135,0.5);
-    }
-
-    .hero-pill.oracle {
-      background: rgba(199,70,52,0.18);
-      color: #F87171;
-      border: 1px solid rgba(199,70,52,0.3);
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
 
     .hero-scroll {
@@ -237,7 +266,7 @@
       margin: 0 auto;
     }
 
-    .section-label {
+    .section-num {
       display: inline-block;
       font-size: 0.6875rem;
       font-weight: 700;
@@ -248,7 +277,7 @@
     }
 
     .section-title {
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.15;
@@ -256,498 +285,251 @@
       margin-bottom: 1rem;
     }
 
-    .section-desc {
-      font-size: 1.0625rem;
-      color: var(--text-secondary);
-      max-width: 600px;
+    .section-divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--oracle));
+      border-radius: 2px;
+      margin: 0.75rem 0 2.5rem;
+    }
+
+    /* ── KPI SECTION ─────────────────────────────────────────────────── */
+    #kpis { background: var(--bg-card); }
+
+    .kpi-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
       margin-bottom: 3rem;
-      line-height: 1.7;
-    }
-
-    /* ── TEAM ────────────────────────────────────────────────────────── */
-    #equipo { background: var(--bg-card); }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .team-card {
-      background: var(--bg-page);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem 1.25rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-
-    .team-card:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      transform: translateY(-3px);
-    }
-
-    .team-avatar {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: var(--navy);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .team-avatar.oracle { background: var(--oracle); }
-    .team-avatar.mid    { background: var(--navy-mid); }
-
-    .team-name {
-      font-size: 0.9375rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      margin-bottom: 0.25rem;
-    }
-
-    .team-role {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .team-role-badge {
-      margin-top: 0.75rem;
-      display: inline-block;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      background: var(--navy-light);
-      color: var(--navy);
-    }
-
-    .team-role-badge.sm { background: var(--oracle-light); color: var(--oracle-dark); }
-
-    /* ── KPIs ────────────────────────────────────────────────────────── */
-    #kpis {
-      background: var(--navy-deep);
-      background-image: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0,85,135,0.25) 0%, transparent 70%);
-    }
-
-    #kpis .section-title { color: #fff; }
-    #kpis .section-label { color: #60A5FA; }
-    #kpis .section-desc { color: rgba(255,255,255,0.45); }
-
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
     }
 
     .kpi-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 1.75rem;
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
       position: relative;
       overflow: hidden;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .kpi-card:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,255,255,0.14);
     }
 
     .kpi-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 2px;
+      height: 3px;
       background: linear-gradient(90deg, var(--navy-mid), var(--oracle));
     }
 
-    .kpi-icon {
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.07);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
-      font-size: 1rem;
+    .kpi-card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
     }
 
-    .kpi-value {
-      font-size: 2.5rem;
+    .kpi-card-value {
+      font-size: 2rem;
       font-weight: 900;
-      color: #fff;
+      color: var(--navy-deep);
       letter-spacing: -0.04em;
       line-height: 1;
-      margin-bottom: 0.4rem;
     }
 
-    .kpi-value span {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .kpi-label {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.45);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .kpi-delta {
-      margin-top: 0.75rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #4ADE80;
-      display: flex; align-items: center; gap: 4px;
-    }
-
-    /* ── AI FEATURE ──────────────────────────────────────────────────── */
-    #ai-feature { background: var(--bg-page); }
-
-    .ai-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: start;
-    }
-
-    @media (max-width: 760px) {
-      .ai-grid { grid-template-columns: 1fr; }
-    }
-
-    .ai-text h3 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--navy-deep);
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-
-    .ai-text p {
-      color: var(--text-secondary);
-      line-height: 1.75;
-      margin-bottom: 1.25rem;
-    }
-
-    .ai-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .ai-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: box-shadow 0.2s;
-    }
-
-    .ai-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-
-    .ai-card-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.125rem;
-    }
-
-    .ai-card-icon.navy { background: var(--navy-light); }
-    .ai-card-icon.oracle { background: var(--oracle-light); }
-    .ai-card-icon.green { background: #F0FDF4; }
-
-    .ai-card-body h4 {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      margin-bottom: 0.25rem;
-    }
-
-    .ai-card-body p {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-
-    /* ── USE CASES ───────────────────────────────────────────────────── */
-    #casos { background: var(--bg-card); }
-
-    .use-case-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    @media (max-width: 760px) {
-      .use-case-grid { grid-template-columns: 1fr; }
-    }
-
-    .use-case-card {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .uc-header {
-      padding: 1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .uc-header.success { background: #F0FDF4; border-bottom: 1px solid #BBF7D0; }
-    .uc-header.error   { background: var(--oracle-light); border-bottom: 1px solid #FECACA; }
-    .uc-header.manager { background: var(--navy-light); border-bottom: 1px solid #BFDBFE; }
-    .uc-header.employee{ background: #FFF7ED; border-bottom: 1px solid #FED7AA; }
-
-    .uc-icon {
-      width: 32px; height: 32px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
+    .kpi-card-value span {
       font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
     }
 
-    .uc-icon.success { background: #DCFCE7; }
-    .uc-icon.error   { background: var(--oracle-light); }
-    .uc-icon.manager { background: var(--navy-light); }
-    .uc-icon.employee{ background: #FFEDD5; }
+    .chart-block {
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
 
-    .uc-title {
+    .chart-title {
       font-size: 0.875rem;
       font-weight: 700;
       color: var(--navy-deep);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
     }
 
-    .uc-body {
-      padding: 1.25rem 1.5rem;
-      background: var(--bg-page);
+    .chart-wrap {
+      position: relative;
+      height: 300px;
     }
 
-    .chat-bubble {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .bubble {
-      display: inline-block;
-      padding: 0.5rem 0.875rem;
-      border-radius: 14px;
-      font-size: 0.8125rem;
-      line-height: 1.5;
-      max-width: 88%;
-    }
-
-    .bubble.user {
-      background: var(--navy);
-      color: #fff;
-      align-self: flex-end;
-      border-bottom-right-radius: 4px;
-    }
-
-    .bubble.bot {
-      background: var(--bg-card);
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-      border-bottom-left-radius: 4px;
-      align-self: flex-start;
-    }
-
-    .bubble.error-bot {
-      background: var(--oracle-light);
-      color: var(--oracle-dark);
-      border: 1px solid #FECACA;
-      border-bottom-left-radius: 4px;
-      align-self: flex-start;
-    }
-
-    .bubble-row { display: flex; flex-direction: column; }
-
-    /* ── NOTIFICATIONS ───────────────────────────────────────────────── */
-    #notificaciones { background: var(--bg-page); }
-
-    .notif-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .notif-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.875rem;
-      transition: box-shadow 0.2s;
-    }
-
-    .notif-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-
-    .notif-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.7rem;
-      border-radius: 20px;
-      width: fit-content;
-    }
-
-    .notif-badge.deadline { background: #FFF7ED; color: #C2410C; }
-    .notif-badge.blocked  { background: var(--oracle-light); color: var(--oracle-dark); }
-    .notif-badge.change   { background: var(--navy-light); color: var(--navy); }
-
-    .notif-badge::before {
-      content: '';
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
-    .notif-card h4 {
-      font-size: 0.9375rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-    }
-
-    .notif-card p {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    .notif-card .channel {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      padding-top: 0.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ── ARCHITECTURE ────────────────────────────────────────────────── */
+    /* ── DEVOPS ARCHITECTURE ─────────────────────────────────────────── */
     #arquitectura {
       background: var(--navy-deep);
       background-image: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(0,85,135,0.2) 0%, transparent 60%);
     }
 
     #arquitectura .section-title { color: #fff; }
-    #arquitectura .section-label { color: #60A5FA; }
-    #arquitectura .section-desc { color: rgba(255,255,255,0.45); }
+    #arquitectura .section-num  { color: #60A5FA; }
 
-    .arch-diagram {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 2.5rem;
+    .devops-diagram {
       display: flex;
       flex-direction: column;
       gap: 0;
-      align-items: center;
     }
 
-    .arch-layer {
+    .pipeline-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .pipeline-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .pipeline-title.highlight { color: #60A5FA; }
+    .pipeline-title.deploy { color: var(--oracle); color: #FB923C; }
+
+    .pipeline-steps {
       display: flex;
-      gap: 1rem;
       align-items: center;
-      justify-content: center;
+      gap: 0;
       flex-wrap: wrap;
     }
 
-    .arch-box {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 0.875rem 1.25rem;
-      text-align: center;
-      min-width: 120px;
-      transition: background 0.2s;
+    .p-step {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .arch-box:hover { background: rgba(255,255,255,0.09); }
+    .p-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      min-width: 110px;
+    }
 
-    .arch-box.highlight {
-      border-color: var(--oracle);
+    .p-box.accent {
+      border-color: rgba(199,70,52,0.4);
       background: rgba(199,70,52,0.1);
     }
 
-    .arch-box.highlight .arch-box-label { color: #F87171; }
-
-    .arch-box-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
-
-    .arch-box-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 0.02em;
+    .p-box.blue {
+      border-color: rgba(96,165,250,0.4);
+      background: rgba(96,165,250,0.08);
     }
 
-    .arch-box-sub {
-      font-size: 0.6875rem;
+    .p-box-icon { font-size: 1.25rem; margin-bottom: 0.3rem; }
+
+    .p-box-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.3;
+    }
+
+    .p-box-sub {
+      font-size: 0.6rem;
       color: rgba(255,255,255,0.35);
-      margin-top: 0.2rem;
+      margin-top: 0.15rem;
       font-family: 'JetBrains Mono', monospace;
     }
 
-    .arch-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 0;
+    .p-arrow {
+      color: rgba(255,255,255,0.25);
+      font-size: 1rem;
+      padding: 0 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .p-arrow-down {
+      text-align: center;
       color: rgba(255,255,255,0.2);
       font-size: 1.25rem;
+      padding: 0.5rem 0;
     }
 
-    .arch-divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(255,255,255,0.06);
-      margin: 1.25rem 0;
-      position: relative;
+    .oke-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    .arch-divider span {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(199,70,52,0.15);
-      border: 1px solid rgba(199,70,52,0.3);
-      color: #F87171;
-      font-size: 0.6875rem;
+    @media (max-width: 640px) { .oke-grid { grid-template-columns: 1fr; } }
+
+    .oke-cell {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .oke-cell-title {
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
       text-transform: uppercase;
-      padding: 0.2rem 0.75rem;
-      border-radius: 20px;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.5rem;
     }
 
-    /* ── DEMO ────────────────────────────────────────────────────────── */
-    #demo { background: var(--bg-card); }
+    .oke-namespaces {
+      display: flex;
+      gap: 0.5rem;
+    }
 
-    .demo-wrapper {
+    .ns-box {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.5rem;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .ns-box.blue { color: #60A5FA; border-color: rgba(96,165,250,0.3); background: rgba(96,165,250,0.06); }
+    .ns-box.green { color: #4ADE80; border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.06); }
+
+    .services-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .svc-chip {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── VIDEO DEVOPS ────────────────────────────────────────────────── */
+    #video { background: var(--bg-page); }
+
+    .video-wrapper {
       max-width: 860px;
-      margin: 0 auto;
     }
 
     .video-container {
@@ -756,8 +538,9 @@
       height: 0;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.12);
       border: 1px solid var(--border);
+      background: var(--navy-deep);
     }
 
     .video-container iframe {
@@ -766,102 +549,126 @@
       width: 100%; height: 100%;
     }
 
-    /* ── FUTURE ──────────────────────────────────────────────────────── */
-    #futuro { background: var(--bg-page); }
-
-    .future-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      max-width: 860px;
+    .video-placeholder {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: rgba(255,255,255,0.4);
     }
 
-    .future-card-header {
-      height: 3px;
-      background: linear-gradient(90deg, var(--navy) 0%, var(--oracle) 100%);
+    .video-placeholder-icon { font-size: 3rem; }
+
+    .video-placeholder p {
+      font-size: 0.875rem;
+      font-weight: 600;
     }
 
-    .future-card-body {
-      padding: 2.5rem;
-    }
-
-    .future-phases {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 640px) {
-      .future-phases { grid-template-columns: 1fr; }
-    }
-
-    .phase {
+    .video-checklist {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+      margin-top: 2rem;
     }
 
-    .phase-header {
+    .video-check-item {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-    }
-
-    .phase-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .phase-dot.done   { background: #15803D; }
-    .phase-dot.pending{ background: var(--oracle); }
-
-    .phase h4 {
-      font-size: 0.9375rem;
-      font-weight: 700;
+      padding: 0.875rem 1.25rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
       color: var(--navy-deep);
     }
 
-    .phase p {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-      padding-left: 1.625rem;
+    .check-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--navy-light);
+      color: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      flex-shrink: 0;
     }
 
-    .phase-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.6875rem;
+    /* ── SIGUIENTES PASOS ────────────────────────────────────────────── */
+    #siguientes {
+      background: var(--navy-deep);
+      background-image: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0,85,135,0.25) 0%, transparent 70%);
+    }
+
+    #siguientes .section-title { color: #fff; }
+    #siguientes .section-num  { color: #60A5FA; }
+
+    .next-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 720px;
+    }
+
+    .next-card-header {
+      height: 3px;
+      background: linear-gradient(90deg, #60A5FA, var(--oracle));
+      border-radius: 2px 2px 0 0;
+      margin: -2rem -2rem 2rem;
+    }
+
+    .next-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .next-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .next-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #60A5FA;
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    .next-dot.oracle { background: var(--oracle); }
+
+    .next-item h4 {
+      font-size: 0.9375rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      margin-left: 1.625rem;
-      width: fit-content;
+      color: #fff;
+      margin-bottom: 0.25rem;
     }
 
-    .phase-status.done   { background: #F0FDF4; color: #15803D; }
-    .phase-status.pending{ background: var(--oracle-light); color: var(--oracle-dark); }
+    .next-item p {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
 
     /* ── FOOTER ──────────────────────────────────────────────────────── */
     footer {
       background: var(--navy-deep);
-      padding: 3rem 2rem;
+      padding: 2.5rem 2rem;
       text-align: center;
       border-top: 1px solid rgba(255,255,255,0.05);
     }
 
     .footer-logo {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 900;
       color: #fff;
       letter-spacing: -0.04em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     .footer-sub {
@@ -869,19 +676,12 @@
       color: rgba(255,255,255,0.3);
     }
 
-    /* ── DIVIDER ─────────────────────────────────────────────────────── */
-    .section-divider {
-      width: 48px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--navy), var(--oracle));
-      border-radius: 2px;
-      margin: 0.75rem 0 2rem;
-    }
-
     /* ── RESPONSIVE NAV ──────────────────────────────────────────────── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
       nav { padding: 0 1.25rem; }
+      .pipeline-steps { gap: 0.25rem; }
+      .p-box { min-width: 80px; }
     }
   </style>
 </head>
@@ -889,7 +689,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#hero" class="nav-logo">
+    <a href="#portada" class="nav-logo">
       <div class="nav-mark">
         <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="9" cy="4" r="2.5" stroke="white" stroke-width="1.5"/>
@@ -902,27 +702,55 @@
       <span class="nav-wordmark">Kairo</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#portada">Portada</a></li>
       <li><a href="#kpis">KPIs</a></li>
-      <li><a href="#ai-feature">IA</a></li>
-      <li><a href="#notificaciones">Notificaciones</a></li>
       <li><a href="#arquitectura">Arquitectura</a></li>
-      <li><a href="#demo">Demo</a></li>
-      <li><a href="#futuro">Futuro</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#siguientes">Siguientes pasos</a></li>
     </ul>
-    <span class="nav-badge">Equipo 33 · Sprint 3</span>
+    <span class="nav-badge">Equipo 33 · Release 3</span>
   </nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-chip"><span></span>Presentación final · Sprint 3</div>
+  <!-- 0. PORTADA -->
+  <section id="portada">
+    <div class="hero-chip"><span></span>Release 3 · DevOps · Equipo 33</div>
     <h1 class="hero-title"><em>Kairo</em></h1>
-    <p class="hero-sub">Sistema de gestión de tareas con IA · Equipo 33</p>
-    <div class="hero-meta">
-      <span class="hero-pill navy">Spring Boot · React · Oracle DB</span>
-      <span class="hero-pill navy">Telegram Bot · IA</span>
-      <span class="hero-pill oracle">OCI · Docker</span>
+    <p class="hero-sub">Software Manager Tool — DevOps · Spring Boot · React · Oracle DB · OCI</p>
+
+    <div class="portada-team">
+
+      <div class="portada-member">
+        <div class="portada-photo">AG</div>
+        <div class="portada-name">Arturo</div>
+        <div class="portada-role">Sr. Developer</div>
+      </div>
+
+      <div class="portada-member">
+        <div class="portada-photo oracle">JE</div>
+        <div class="portada-name">Jose Emilio</div>
+        <div class="portada-role">Tester / QA</div>
+      </div>
+
+      <div class="portada-member">
+        <div class="portada-photo mid">YA</div>
+        <div class="portada-name">Yael</div>
+        <div class="portada-role">DB Admin</div>
+      </div>
+
+      <div class="portada-member">
+        <div class="portada-photo oracle">PA</div>
+        <div class="portada-name">Patricio</div>
+        <div class="portada-role">Scrum Master</div>
+      </div>
+
+      <div class="portada-member">
+        <div class="portada-photo mid">AN</div>
+        <div class="portada-name">Andres</div>
+        <div class="portada-role">Jr. Developer</div>
+      </div>
+
     </div>
+
     <div class="hero-scroll">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 5v14M5 12l7 7 7-7"/>
@@ -931,329 +759,161 @@
     </div>
   </section>
 
-  <!-- EQUIPO -->
-  <section id="equipo">
-    <div class="section-inner">
-      <span class="section-label">Equipo 33</span>
-      <h2 class="section-title">Equipo y roles</h2>
-      <div class="section-divider"></div>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-avatar">AG</div>
-          <div class="team-name">Arturo</div>
-          <div class="team-role">Developer</div>
-          <span class="team-role-badge">Sr. Developer</span>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar oracle">JE</div>
-          <div class="team-name">Jose Emilio</div>
-          <div class="team-role">Quality</div>
-          <span class="team-role-badge sm">Tester</span>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar mid">YA</div>
-          <div class="team-name">Yael</div>
-          <div class="team-role">Base de datos</div>
-          <span class="team-role-badge">DB Admin</span>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar oracle">PA</div>
-          <div class="team-name">Patricio</div>
-          <div class="team-role">Proceso</div>
-          <span class="team-role-badge sm">Scrum Master</span>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar mid">AN</div>
-          <div class="team-name">Andres</div>
-          <div class="team-role">Developer</div>
-          <span class="team-role-badge">Jr. Developer</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- KPIs -->
+  <!-- 1. KPIs -->
   <section id="kpis">
     <div class="section-inner">
-      <span class="section-label">Sprint 3</span>
-      <h2 class="section-title">KPIs del Sprint</h2>
-      <div class="section-divider" style="background: linear-gradient(90deg, #60A5FA, var(--oracle));"></div>
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon">✅</div>
-          <div class="kpi-value">18<span>pts</span></div>
-          <div class="kpi-label">Story points completados</div>
-          <div class="kpi-delta">↑ Velocidad del equipo</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon">🤖</div>
-          <div class="kpi-value">1<span>feat</span></div>
-          <div class="kpi-label">Feature de IA integrado</div>
-          <div class="kpi-delta">↑ NLP en Telegram Bot</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon">🔔</div>
-          <div class="kpi-value">3<span>tipos</span></div>
-          <div class="kpi-label">Tipos de notificaciones</div>
-          <div class="kpi-delta">↑ Sprint, Blocked, Status</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon">🚀</div>
-          <div class="kpi-value">CI<span>/CD</span></div>
-          <div class="kpi-label">Pipeline automatizado</div>
-          <div class="kpi-delta">↑ CI activo en GitHub</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AI FEATURE -->
-  <section id="ai-feature">
-    <div class="section-inner">
-      <span class="section-label">Inteligencia Artificial</span>
-      <h2 class="section-title">Feature de IA</h2>
+      <span class="section-num">01 — KPIs</span>
+      <h2 class="section-title">Tasks completadas y horas trabajadas</h2>
       <div class="section-divider"></div>
-      <div class="ai-grid">
-        <div class="ai-text">
-          <h3>Procesamiento de lenguaje natural en el Bot de Telegram</h3>
-          <p>
-            Kairo integra un módulo de IA directamente en el bot de Telegram, permitiendo a los usuarios
-            interactuar en lenguaje natural sin necesidad de memorizar comandos exactos.
-          </p>
-          <p>
-            El sistema interpreta la intención del usuario, identifica entidades como proyectos, sprints
-            y tareas, y ejecuta las acciones correspondientes de forma transparente.
-          </p>
+
+      <!-- Resumen de indicadores -->
+      <div class="kpi-summary">
+        <div class="kpi-card">
+          <div class="kpi-card-label"># Tasks completadas</div>
+          <div class="kpi-card-value">—<span> total</span></div>
         </div>
-        <div class="ai-cards">
-          <div class="ai-card">
-            <div class="ai-card-icon navy">👔</div>
-            <div class="ai-card-body">
-              <h4>Perspectiva del Manager</h4>
-              <p>Ver y gestionar tareas — crear, borrar y mover desde el contexto de su proyecto activo.</p>
-            </div>
-          </div>
-          <div class="ai-card">
-            <div class="ai-card-icon green">👨‍💻</div>
-            <div class="ai-card-body">
-              <h4>Perspectiva del Empleado</h4>
-              <p>Finalizar tareas, actualizar su estado y consultar sus asignaciones desde Telegram.</p>
-            </div>
-          </div>
-          <div class="ai-card">
-            <div class="ai-card-icon oracle">⚡</div>
-            <div class="ai-card-body">
-              <h4>Integrado en el monolito</h4>
-              <p>El módulo de IA vive dentro del mismo Spring Boot, sin servicios externos adicionales.</p>
-            </div>
-          </div>
+        <div class="kpi-card">
+          <div class="kpi-card-label">Horas reales trabajadas</div>
+          <div class="kpi-card-value">—<span> hrs</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card-label">Promedio tasks / developer</div>
+          <div class="kpi-card-value">—<span> avg</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card-label">Promedio horas / developer</div>
+          <div class="kpi-card-value">—<span> hrs</span></div>
         </div>
       </div>
+
+      <!-- Gráfica 1: Tasks completadas por developer / sprint -->
+      <div class="chart-block">
+        <div class="chart-title">Tasks completadas por developer / sprint</div>
+        <div class="chart-wrap">
+          <canvas id="chartTasks"></canvas>
+        </div>
+      </div>
+
+      <!-- Gráfica 2: Total horas reales por developer / sprint -->
+      <div class="chart-block">
+        <div class="chart-title">Total horas reales por developer / sprint</div>
+        <div class="chart-wrap">
+          <canvas id="chartHoras"></canvas>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- CASOS DE USO IA -->
-  <section id="casos">
-    <div class="section-inner">
-      <span class="section-label">Casos de uso</span>
-      <h2 class="section-title">IA en acción</h2>
-      <div class="section-divider"></div>
-      <div class="use-case-grid">
-
-        <!-- Caso: Manager exitoso -->
-        <div class="use-case-card">
-          <div class="uc-header manager">
-            <div class="uc-icon manager">👔</div>
-            <div class="uc-title">Manager — crear tarea</div>
-          </div>
-          <div class="uc-body">
-            <div class="chat-bubble">
-              <div class="bubble-row" style="align-items: flex-end;">
-                <div class="bubble user">Crea una tarea para revisar el módulo de pagos con prioridad alta</div>
-              </div>
-              <div class="bubble-row" style="align-items: flex-start;">
-                <div class="bubble bot">✅ Tarea creada exitosamente:<br><strong>«Revisar módulo de pagos»</strong><br>Prioridad: Alta · Sin asignar · Backlog</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Caso: Empleado exitoso -->
-        <div class="use-case-card">
-          <div class="uc-header employee">
-            <div class="uc-icon employee">👨‍💻</div>
-            <div class="uc-title">Empleado — actualizar tarea</div>
-          </div>
-          <div class="uc-body">
-            <div class="chat-bubble">
-              <div class="bubble-row" style="align-items: flex-end;">
-                <div class="bubble user">Ya terminé la tarea #42, fueron 3 horas</div>
-              </div>
-              <div class="bubble-row" style="align-items: flex-start;">
-                <div class="bubble bot">✅ Tarea #42 marcada como <strong>DONE</strong><br>Horas registradas: 3h · ¡Buen trabajo!</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Caso: No se entendió -->
-        <div class="use-case-card">
-          <div class="uc-header error">
-            <div class="uc-icon error">❓</div>
-            <div class="uc-title">Comando no reconocido</div>
-          </div>
-          <div class="uc-body">
-            <div class="chat-bubble">
-              <div class="bubble-row" style="align-items: flex-end;">
-                <div class="bubble user">hazme el favor con lo de siempre para el proyecto</div>
-              </div>
-              <div class="bubble-row" style="align-items: flex-start;">
-                <div class="bubble error-bot">❌ No entendí tu solicitud. Intenta ser más específico, por ejemplo:<br>«Muestra mis tareas pendientes» o «Crea tarea X en el sprint activo»</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Caso: Mover tarea -->
-        <div class="use-case-card">
-          <div class="uc-header success">
-            <div class="uc-icon success">🔄</div>
-            <div class="uc-title">Manager — mover tarea de sprint</div>
-          </div>
-          <div class="uc-body">
-            <div class="chat-bubble">
-              <div class="bubble-row" style="align-items: flex-end;">
-                <div class="bubble user">Mueve la tarea #15 al sprint 2</div>
-              </div>
-              <div class="bubble-row" style="align-items: flex-start;">
-                <div class="bubble bot">✅ Tarea #15 movida al <strong>Sprint 2</strong><br>Sprint activo · Asignada a Andres</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- NOTIFICACIONES -->
-  <section id="notificaciones">
-    <div class="section-inner">
-      <span class="section-label">Alertas y eventos</span>
-      <h2 class="section-title">Notificaciones</h2>
-      <div class="section-divider"></div>
-      <p class="section-desc">
-        Kairo envía notificaciones automáticas vía Telegram cuando ocurren eventos críticos, manteniendo
-        a los equipos informados sin necesidad de revisar la aplicación constantemente.
-      </p>
-      <div class="notif-grid">
-        <div class="notif-card">
-          <span class="notif-badge deadline">Sprint deadline</span>
-          <h4>Vencimiento de sprint</h4>
-          <p>
-            Cron job que notifica al manager y a los miembros con tareas no completadas cuando el sprint
-            está próximo a cerrar.
-          </p>
-          <div class="channel">
-            <span>📩</span> Telegram · Manager + Miembros afectados
-          </div>
-        </div>
-        <div class="notif-card">
-          <span class="notif-badge blocked">Task blocked</span>
-          <h4>Tarea bloqueada</h4>
-          <p>
-            Cuando una tarea se marca como BLOCKED, el manager del proyecto recibe una alerta inmediata
-            para tomar acción.
-          </p>
-          <div class="channel">
-            <span>📩</span> Telegram · Manager del proyecto
-          </div>
-        </div>
-        <div class="notif-card">
-          <span class="notif-badge change">Status change</span>
-          <h4>Cambio de estado</h4>
-          <p>
-            Cada vez que el estado de una tarea cambia, el miembro asignado recibe una notificación
-            con el nuevo estado y el responsable del cambio.
-          </p>
-          <div class="channel">
-            <span>📩</span> Telegram · Miembro asignado
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ARQUITECTURA -->
+  <!-- 4. ARQUITECTURA DEVOPS -->
   <section id="arquitectura">
     <div class="section-inner">
-      <span class="section-label">Stack técnico</span>
-      <h2 class="section-title">Arquitectura con IA</h2>
+      <span class="section-num">04 — Arquitectura</span>
+      <h2 class="section-title">Arquitectura DevOps</h2>
       <div class="section-divider" style="background: linear-gradient(90deg, #60A5FA, var(--oracle));"></div>
-      <p class="section-desc">
-        Monolito Spring Boot en OCI con módulo de IA embebido — sin microservicios, sin complejidad extra.
-      </p>
-      <div class="arch-diagram">
 
-        <!-- Clientes -->
-        <div class="arch-layer">
-          <div class="arch-box">
-            <div class="arch-box-icon">🌐</div>
-            <div class="arch-box-label">React Web Portal</div>
-            <div class="arch-box-sub">Vite · Tailwind</div>
-          </div>
-          <div class="arch-box highlight">
-            <div class="arch-box-icon">🤖</div>
-            <div class="arch-box-label">Telegram Bot + IA</div>
-            <div class="arch-box-sub">Long polling · NLP</div>
-          </div>
-        </div>
+      <div class="devops-diagram">
 
-        <div class="arch-arrow">↓</div>
-
-        <!-- Seguridad -->
-        <div class="arch-layer">
-          <div class="arch-box">
-            <div class="arch-box-icon">🔐</div>
-            <div class="arch-box-label">Spring Security</div>
-            <div class="arch-box-sub">JWT · Stateless</div>
-          </div>
-        </div>
-
-        <div class="arch-divider"><span>Spring Boot Monolito</span></div>
-
-        <!-- Backend -->
-        <div class="arch-layer">
-          <div class="arch-box">
-            <div class="arch-box-icon">🎮</div>
-            <div class="arch-box-label">Controllers</div>
-            <div class="arch-box-sub">REST API</div>
-          </div>
-          <div class="arch-box">
-            <div class="arch-box-icon">⚙️</div>
-            <div class="arch-box-label">Services</div>
-            <div class="arch-box-sub">Business logic</div>
-          </div>
-          <div class="arch-box">
-            <div class="arch-box-icon">🗄️</div>
-            <div class="arch-box-label">Repositories</div>
-            <div class="arch-box-sub">Spring Data JPA</div>
+        <!-- CI Pipeline -->
+        <div class="pipeline-box">
+          <div class="pipeline-title highlight">CI — GitHub Actions (ci.yml) · Push / Pull Request → main</div>
+          <div class="pipeline-steps">
+            <div class="p-step">
+              <div class="p-box">
+                <div class="p-box-icon">👨‍💻</div>
+                <div class="p-box-label">Developer</div>
+                <div class="p-box-sub">git push / PR</div>
+              </div>
+            </div>
+            <div class="p-arrow">→</div>
+            <div class="p-step">
+              <div class="p-box blue">
+                <div class="p-box-icon">🐙</div>
+                <div class="p-box-label">GitHub</div>
+                <div class="p-box-sub">Actions trigger</div>
+              </div>
+            </div>
+            <div class="p-arrow">→</div>
+            <div class="p-step">
+              <div class="p-box">
+                <div class="p-box-icon">☕</div>
+                <div class="p-box-label">Backend Tests</div>
+                <div class="p-box-sub">Maven · Java 17</div>
+              </div>
+            </div>
+            <div class="p-arrow">+</div>
+            <div class="p-step">
+              <div class="p-box">
+                <div class="p-box-icon">⚛️</div>
+                <div class="p-box-label">Frontend Tests</div>
+                <div class="p-box-sub">Node 20 · npm</div>
+              </div>
+            </div>
+            <div class="p-arrow">→</div>
+            <div class="p-step">
+              <div class="p-box accent">
+                <div class="p-box-icon">🐳</div>
+                <div class="p-box-label">Docker Build</div>
+                <div class="p-box-sub">Build check</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="arch-arrow">↓</div>
+        <div class="p-arrow-down">↓ CI exitoso en master</div>
 
-        <!-- DB -->
-        <div class="arch-layer">
-          <div class="arch-box">
-            <div class="arch-box-icon">🏛️</div>
-            <div class="arch-box-label">Oracle Database</div>
-            <div class="arch-box-sub">HikariCP · OCI</div>
+        <!-- CD Pipeline -->
+        <div class="pipeline-box">
+          <div class="pipeline-title deploy">CD — GitHub Actions (cd.yaml) · Auto-deploy a OCI</div>
+          <div class="pipeline-steps">
+            <div class="p-step">
+              <div class="p-box">
+                <div class="p-box-icon">🏷️</div>
+                <div class="p-box-label">Calcular versión</div>
+                <div class="p-box-sub">git tag deploy-0.X</div>
+              </div>
+            </div>
+            <div class="p-arrow">→</div>
+            <div class="p-step">
+              <div class="p-box blue">
+                <div class="p-box-icon">🔑</div>
+                <div class="p-box-label">Login OCIR</div>
+                <div class="p-box-sub">mx-queretaro-1</div>
+              </div>
+            </div>
+            <div class="p-arrow">→</div>
+            <div class="p-step">
+              <div class="p-box accent">
+                <div class="p-box-icon">📦</div>
+                <div class="p-box-label">Build & Push imagen</div>
+                <div class="p-box-sub">OCIR · Docker</div>
+              </div>
+            </div>
+            <div class="p-arrow">→</div>
+            <div class="p-step">
+              <div class="p-box accent">
+                <div class="p-box-icon">☸️</div>
+                <div class="p-box-label">Deploy a OKE</div>
+                <div class="p-box-sub">kubectl · rollout</div>
+              </div>
+            </div>
           </div>
-          <div class="arch-box">
-            <div class="arch-box-icon">🐳</div>
-            <div class="arch-box-label">Docker · OKE</div>
-            <div class="arch-box-sub">OCI Container</div>
+
+          <div class="oke-grid">
+            <div class="oke-cell">
+              <div class="oke-cell-title">Oracle Container Engine — OKE</div>
+              <div class="oke-namespaces">
+                <div class="ns-box blue">mtdrworkshop</div>
+                <div class="ns-box green">Succeeded ✓</div>
+              </div>
+            </div>
+            <div class="oke-cell">
+              <div class="oke-cell-title">Oracle Container Image Registry — OCIR</div>
+              <div class="services-row">
+                <span class="svc-chip">🐳 todolistapp-springboot</span>
+                <span class="svc-chip">🏷️ versión 0.X</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1261,59 +921,51 @@
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section id="demo">
+  <!-- 5. VIDEO DEVOPS -->
+  <section id="video">
     <div class="section-inner">
-      <span class="section-label">Video demostrativo</span>
-      <h2 class="section-title">Demo</h2>
+      <span class="section-num">05 — Video DevOps</span>
+      <h2 class="section-title">Video DevOps</h2>
       <div class="section-divider"></div>
-      <div class="demo-wrapper">
-        <div class="video-container">
-          <iframe src="https://www.loom.com/embed/2abef1a62461456eaf6fcd059a21795d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </div>
-      </div>
+
+      <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/2abef1a62461456eaf6fcd059a21795d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
     </div>
   </section>
 
-  <!-- PLANES A FUTURO -->
-  <section id="futuro">
+  <!-- 6. SIGUIENTES PASOS -->
+  <section id="siguientes">
     <div class="section-inner">
-      <span class="section-label">Roadmap</span>
-      <h2 class="section-title">Planes a futuro</h2>
-      <div class="section-divider"></div>
-      <div class="future-card">
-        <div class="future-card-header"></div>
-        <div class="future-card-body">
-          <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.9375rem;">
-            Implementación de un <strong style="color: var(--navy-deep);">CI/CD Pipeline completo</strong> para automatizar
-            el proceso de integración y despliegue en OCI, eliminando pasos manuales y garantizando que
-            solo código funcional llegue a producción.
-          </p>
-          <div class="future-phases">
-            <div class="phase">
-              <div class="phase-header">
-                <span class="phase-dot done"></span>
-                <h4>Integración Continua (CI)</h4>
-              </div>
-              <p>
-                Tests automatizados integrados en GitHub Actions. Cada pull request ejecuta la suite de
-                pruebas, bloqueando merges que rompan el build o fallen en los tests.
-              </p>
-              <span class="phase-status done">✓ Implementado</span>
-            </div>
-            <div class="phase">
-              <div class="phase-header">
-                <span class="phase-dot pending"></span>
-                <h4>Despliegue Continuo (CD)</h4>
-              </div>
-              <p>
-                Automatización del despliegue a OKE (Oracle Kubernetes Engine) al hacer merge en main,
-                sin intervención manual. Pipeline completo de build → push → deploy.
-              </p>
-              <span class="phase-status pending">⏳ En progreso</span>
-            </div>
+      <span class="section-num">06 — Siguientes pasos</span>
+      <h2 class="section-title">Siguientes pasos</h2>
+      <div class="section-divider" style="background: linear-gradient(90deg, #60A5FA, var(--oracle));"></div>
+
+      <div class="next-card">
+        <div class="next-card-header"></div>
+
+        <div class="next-item">
+          <span class="next-dot"></span>
+          <div>
+            <h4>Presentación Final</h4>
+            <p>Consolidar todos los releases y preparar la demo integral del sistema Kairo para la presentación final del proyecto.</p>
           </div>
         </div>
+
+        <div class="next-item">
+          <span class="next-dot oracle"></span>
+          <div>
+            <h4>CD completo en OCI</h4>
+            <p>Completar el pipeline de Despliegue Continuo en Oracle Kubernetes Engine — automatizar build → push → deploy sin intervención manual.</p>
+          </div>
+        </div>
+
+        <div class="next-item">
+          <span class="next-dot"></span>
+          <div>
+            <h4>Mejoras identificadas</h4>
+            <p>— Por definir con el equipo según análisis de KPIs</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1322,8 +974,99 @@
   <div class="accent-bar"></div>
   <footer>
     <div class="footer-logo">Kairo</div>
-    <div class="footer-sub">Equipo 33 · Sprint 3 · Oracle Java Bot · 2026</div>
+    <div class="footer-sub">Equipo 33 · Release 3 DevOps · Oracle Java Boot Camp · 2026</div>
   </footer>
+
+  <script>
+    /* ── DATOS DE LAS GRÁFICAS ───────────────────────────────────────────
+       Actualizar estos arrays con los datos reales de la aplicación.
+       developers: nombres tal como aparecen en la app.
+       sprints: todos los sprints hasta el 21 de Mayo.
+       tasks/horas: índice[sprint][developer] en el mismo orden.
+    ─────────────────────────────────────────────────────────────────── */
+    const developers = ['Arturo', 'Jose Emilio', 'Yael', 'Patricio', 'Andres'];
+
+    const sprints = ['Sprint 1', 'Sprint 2', 'Sprint 3'];
+
+    // Tasks completadas [por sprint][por developer]
+    const tasksData = [
+      [0, 0, 0, 0, 0],  // Sprint 1
+      [0, 0, 0, 0, 0],  // Sprint 2
+      [0, 0, 0, 0, 0],  // Sprint 3
+    ];
+
+    // Horas reales trabajadas [por sprint][por developer]
+    const horasData = [
+      [0, 0, 0, 0, 0],  // Sprint 1
+      [0, 0, 0, 0, 0],  // Sprint 2
+      [0, 0, 0, 0, 0],  // Sprint 3
+    ];
+
+    const COLORS = [
+      '#1D4ED8', '#EA580C', '#15803D', '#DC2626', '#7C3AED'
+    ];
+
+    const BORDER_COLORS = [
+      '#1E40AF', '#C2410C', '#166534', '#B91C1C', '#6D28D9'
+    ];
+
+    function makeDatasets(dataMatrix) {
+      return developers.map((dev, i) => ({
+        label: dev,
+        data: dataMatrix.map(row => row[i]),
+        backgroundColor: COLORS[i] + 'CC',
+        borderColor: BORDER_COLORS[i],
+        borderWidth: 1.5,
+        borderRadius: 4,
+      }));
+    }
+
+    const commonOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { font: { family: 'Manrope', weight: '600', size: 12 }, padding: 16 }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { family: 'Manrope', weight: '600' } }
+        },
+        y: {
+          beginAtZero: true,
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          ticks: { font: { family: 'Manrope' }, precision: 0 }
+        }
+      }
+    };
+
+    new Chart(document.getElementById('chartTasks'), {
+      type: 'bar',
+      data: { labels: sprints, datasets: makeDatasets(tasksData) },
+      options: {
+        ...commonOptions,
+        scales: {
+          ...commonOptions.scales,
+          y: { ...commonOptions.scales.y, title: { display: true, text: 'Tasks completadas', font: { family: 'Manrope', size: 11 } } }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chartHoras'), {
+      type: 'bar',
+      data: { labels: sprints, datasets: makeDatasets(horasData) },
+      options: {
+        ...commonOptions,
+        scales: {
+          ...commonOptions.scales,
+          y: { ...commonOptions.scales.y, title: { display: true, text: 'Horas reales', font: { family: 'Manrope', size: 11 } } }
+        }
+      }
+    });
+  </script>
 
 </body>
 </html>
