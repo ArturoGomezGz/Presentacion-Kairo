@@ -780,19 +780,19 @@
       <div class="kpi-summary">
         <div class="kpi-card">
           <div class="kpi-card-label"># Tasks completadas</div>
-          <div class="kpi-card-value">—<span> total</span></div>
+          <div class="kpi-card-value"><span id="kpi-total-tasks">—</span><span> total</span></div>
         </div>
         <div class="kpi-card">
           <div class="kpi-card-label">Horas reales trabajadas</div>
-          <div class="kpi-card-value">—<span> hrs</span></div>
+          <div class="kpi-card-value"><span id="kpi-total-horas">—</span><span> hrs</span></div>
         </div>
         <div class="kpi-card">
           <div class="kpi-card-label">Promedio tasks / developer</div>
-          <div class="kpi-card-value">—<span> avg</span></div>
+          <div class="kpi-card-value"><span id="kpi-avg-tasks">—</span><span> avg</span></div>
         </div>
         <div class="kpi-card">
           <div class="kpi-card-label">Promedio horas / developer</div>
-          <div class="kpi-card-value">—<span> hrs</span></div>
+          <div class="kpi-card-value"><span id="kpi-avg-horas">—</span><span> hrs</span></div>
         </div>
       </div>
 
@@ -988,50 +988,42 @@
   </footer>
 
   <script>
-    /* ── DATOS DE LAS GRÁFICAS ───────────────────────────────────────────
-       Actualizar estos arrays con los datos reales de la aplicación.
-       developers: nombres tal como aparecen en la app.
-       sprints: todos los sprints hasta el 21 de Mayo.
-       tasks/horas: índice[sprint][developer] en el mismo orden.
-    ─────────────────────────────────────────────────────────────────── */
-    const developers = ['Arturo', 'Jose Emilio', 'Yael', 'Patricio', 'Andres'];
+    const COLORS = {
+      'Arturo Gomez':            { bg: '#1D4ED8CC', border: '#1E40AF' },
+      'José Emilio Inzunza':     { bg: '#EA580CCC', border: '#C2410C' },
+      'Yael Garcia':             { bg: '#15803DCC', border: '#166534' },
+      'Patricio Blanco':         { bg: '#DC2626CC', border: '#B91C1C' },
+      'Andrés Gallego López':    { bg: '#7C3AEDCC', border: '#6D28D9' },
+    };
 
-    const sprints = ['Sprint 1', 'Sprint 2', 'Sprint 3'];
+    const DEV_ORDER = Object.keys(COLORS);
 
-    // Tasks completadas [por sprint][por developer]
-    const tasksData = [
-      [0, 0, 0, 0, 0],  // Sprint 1
-      [0, 0, 0, 0, 0],  // Sprint 2
-      [0, 0, 0, 0, 0],  // Sprint 3
-    ];
+    function parseCSV(text) {
+      const lines = text.trim().split('\n');
+      const headers = lines[0].split(',').map(h => h.trim());
+      const devNames = headers.slice(1);
+      const rows = lines.slice(1).map(line => {
+        const cols = line.split(',').map(c => c.trim());
+        const sprint = cols[0];
+        const values = {};
+        devNames.forEach((dev, i) => { values[dev] = parseFloat(cols[i + 1]) || 0; });
+        return { sprint, values };
+      });
+      return { devNames, rows };
+    }
 
-    // Horas reales trabajadas [por sprint][por developer]
-    const horasData = [
-      [0, 0, 0, 0, 0],  // Sprint 1
-      [0, 0, 0, 0, 0],  // Sprint 2
-      [0, 0, 0, 0, 0],  // Sprint 3
-    ];
-
-    const COLORS = [
-      '#1D4ED8', '#EA580C', '#15803D', '#DC2626', '#7C3AED'
-    ];
-
-    const BORDER_COLORS = [
-      '#1E40AF', '#C2410C', '#166534', '#B91C1C', '#6D28D9'
-    ];
-
-    function makeDatasets(dataMatrix) {
-      return developers.map((dev, i) => ({
-        label: dev,
-        data: dataMatrix.map(row => row[i]),
-        backgroundColor: COLORS[i] + 'CC',
-        borderColor: BORDER_COLORS[i],
+    function buildDatasets(rows, devNames) {
+      return DEV_ORDER.filter(d => devNames.includes(d)).map(dev => ({
+        label: dev.split(' ')[0],
+        data: rows.map(r => r.values[dev] ?? 0),
+        backgroundColor: COLORS[dev].bg,
+        borderColor: COLORS[dev].border,
         borderWidth: 1.5,
         borderRadius: 4,
       }));
     }
 
-    const commonOptions = {
+    const commonOptions = (yLabel) => ({
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
@@ -1048,33 +1040,51 @@
         y: {
           beginAtZero: true,
           grid: { color: 'rgba(0,0,0,0.06)' },
-          ticks: { font: { family: 'Manrope' }, precision: 0 }
-        }
-      }
-    };
-
-    new Chart(document.getElementById('chartTasks'), {
-      type: 'bar',
-      data: { labels: sprints, datasets: makeDatasets(tasksData) },
-      options: {
-        ...commonOptions,
-        scales: {
-          ...commonOptions.scales,
-          y: { ...commonOptions.scales.y, title: { display: true, text: 'Tasks completadas', font: { family: 'Manrope', size: 11 } } }
+          ticks: { font: { family: 'Manrope' }, precision: 0 },
+          title: { display: true, text: yLabel, font: { family: 'Manrope', size: 11 } }
         }
       }
     });
 
-    new Chart(document.getElementById('chartHoras'), {
-      type: 'bar',
-      data: { labels: sprints, datasets: makeDatasets(horasData) },
-      options: {
-        ...commonOptions,
-        scales: {
-          ...commonOptions.scales,
-          y: { ...commonOptions.scales.y, title: { display: true, text: 'Horas reales', font: { family: 'Manrope', size: 11 } } }
-        }
-      }
+    function updateSummaryCards(tasksRows, horasRows) {
+      const allTasks = tasksRows.flatMap(r => Object.values(r.values));
+      const allHoras = horasRows.flatMap(r => Object.values(r.values));
+      const totalTasks = allTasks.reduce((a, b) => a + b, 0);
+      const totalHoras = allHoras.reduce((a, b) => a + b, 0);
+      const devCount = DEV_ORDER.length;
+
+      document.getElementById('kpi-total-tasks').textContent = totalTasks;
+      document.getElementById('kpi-total-horas').textContent = totalHoras.toFixed(1);
+      document.getElementById('kpi-avg-tasks').textContent = (totalTasks / devCount).toFixed(1);
+      document.getElementById('kpi-avg-horas').textContent = (totalHoras / devCount).toFixed(1);
+    }
+
+    Promise.all([
+      fetch('graficas/tareas-por-desarrollador.csv').then(r => r.text()),
+      fetch('graficas/horas-por-desarrollador.csv').then(r => r.text()),
+    ]).then(([csvTasks, csvHoras]) => {
+      const tasks = parseCSV(csvTasks);
+      const horas = parseCSV(csvHoras);
+
+      updateSummaryCards(tasks.rows, horas.rows);
+
+      new Chart(document.getElementById('chartTasks'), {
+        type: 'bar',
+        data: {
+          labels: tasks.rows.map(r => r.sprint),
+          datasets: buildDatasets(tasks.rows, tasks.devNames),
+        },
+        options: commonOptions('Tasks completadas'),
+      });
+
+      new Chart(document.getElementById('chartHoras'), {
+        type: 'bar',
+        data: {
+          labels: horas.rows.map(r => r.sprint),
+          datasets: buildDatasets(horas.rows, horas.devNames),
+        },
+        options: commonOptions('Horas reales'),
+      });
     });
   </script>
 
