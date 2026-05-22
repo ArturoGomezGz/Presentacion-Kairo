@@ -786,14 +786,6 @@
           <div class="kpi-card-label">Horas reales trabajadas</div>
           <div class="kpi-card-value"><span id="kpi-total-horas">—</span><span> hrs</span></div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-card-label">Promedio tasks / developer</div>
-          <div class="kpi-card-value"><span id="kpi-avg-tasks">—</span><span> avg</span></div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-card-label">Promedio horas / developer</div>
-          <div class="kpi-card-value"><span id="kpi-avg-horas">—</span><span> hrs</span></div>
-        </div>
       </div>
 
       <!-- Gráfica 1: Tasks completadas por developer / sprint -->
@@ -1047,16 +1039,10 @@
     });
 
     function updateSummaryCards(tasksRows, horasRows) {
-      const allTasks = tasksRows.flatMap(r => Object.values(r.values));
-      const allHoras = horasRows.flatMap(r => Object.values(r.values));
-      const totalTasks = allTasks.reduce((a, b) => a + b, 0);
-      const totalHoras = allHoras.reduce((a, b) => a + b, 0);
-      const devCount = DEV_ORDER.length;
-
+      const totalTasks = tasksRows.flatMap(r => Object.values(r.values)).reduce((a, b) => a + b, 0);
+      const totalHoras = horasRows.flatMap(r => Object.values(r.values)).reduce((a, b) => a + b, 0);
       document.getElementById('kpi-total-tasks').textContent = totalTasks;
       document.getElementById('kpi-total-horas').textContent = totalHoras.toFixed(1);
-      document.getElementById('kpi-avg-tasks').textContent = (totalTasks / devCount).toFixed(1);
-      document.getElementById('kpi-avg-horas').textContent = (totalHoras / devCount).toFixed(1);
     }
 
     Promise.all([
