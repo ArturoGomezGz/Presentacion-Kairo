@@ -8,25 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'dark',
-      themeVariables: {
-        background:           '#001C33',
-        mainBkg:              '#0d2540',
-        nodeBorder:           '#3a6a9a',
-        clusterBkg:           '#071a2d',
-        lineColor:            '#60A5FA',
-        textColor:            '#d0dde8',
-        titleColor:           '#60A5FA',
-        edgeLabelBackground:  '#001C33',
-        fontSize:             '13px'
-      },
-      flowchart: { curve: 'basis', padding: 18 }
-    });
-  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -385,9 +366,16 @@
     #arquitectura .section-title { color: #fff; }
     #arquitectura .section-num  { color: #60A5FA; }
 
-    /* ── ARQUITECTURA DEVOPS — MERMAID ──────────────────────────────── */
-    .mermaid-wrap { overflow-x: auto; }
-    .mermaid-wrap svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    /* ── ARQUITECTURA DEVOPS — DIAGRAMA ─────────────────────────────── */
+    .diagrama-wrap { display: flex; justify-content: center; }
+    .diagrama-img {
+      max-width: 75%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
 
     /* ── ARQUITECTURA DEVOPS V2 (legacy, no longer rendered) ────────── */
     .cicd2-wrap { overflow-x: auto; }
@@ -851,66 +839,8 @@
       <h2 class="section-title">Arquitectura DevOps</h2>
       <div class="section-divider" style="background: linear-gradient(90deg, #60A5FA, var(--oracle));"></div>
 
-      <div class="mermaid-wrap">
-        <pre class="mermaid">
-flowchart TD
-  DEV("👨‍💻 Developer\ngit push / PR")
-  GH("🐙 GitHub\nSource control")
-  DEV --> GH
-
-  subgraph CI ["① CI — Build Pipeline · ci.yml"]
-    direction LR
-    CT["⚡ GitHub Trigger\nPush / PR → main"]
-    TESTS["☕ Backend Tests · Maven · Java 17\n⚛️ Frontend Tests · Node 20 · npm"]
-    DB["🐳 Build Docker Image\ndocker build · validate"]
-    PA["📦 Push a OCIR\nArtifact Registry"]
-    CT --> TESTS --> DB --> PA
-  end
-
-  subgraph OCI ["OCI Artifact Management"]
-    direction LR
-    AR["📦 Artifact Registry\nbuild artifacts"]
-    CR["🗄️ Container Registry · OCIR\nmx-queretaro-1 · todolistapp-springboot · v0.X"]
-    AR --> CR
-  end
-
-  subgraph CD ["② CD — Deployment Pipeline · cd.yaml"]
-    direction LR
-    VER["🏷️ Calcular versión\ngit tag deploy-0.X"]
-    LO["🔑 Login OCIR\nmx-queretaro-1"]
-    BP["📦 Build and Push\nDocker a OCIR"]
-    DV["✅ Deployment Validation\nhealth check"]
-    DO["☸️ Deploy a OKE\nkubectl rollout"]
-    VER --> LO --> BP --> DV --> DO
-  end
-
-  subgraph OKE ["Oracle Kubernetes Engine — mtdrworkshop · Succeeded ✓"]
-    direction LR
-    WN1["Worker Node 1\n⚛️ Frontend Pod  ·  ☕ Backend Pod"]
-    WN2["Worker Node 2\n⚛️ Frontend Pod  ·  ☕ Backend Pod"]
-  end
-
-  USERS("👥 End Users")
-  LB("⚖️ Load Balancer · OCI LB")
-
-  GH --> CT
-  PA --> AR
-  CR --> VER
-  DO --> WN1 & WN2
-  USERS --> LB --> WN1 & WN2
-
-  classDef actor fill:#0d2540,stroke:#4a7a9a,color:#c0d4e0
-  classDef ci    fill:#0d3560,stroke:#60A5FA,color:#d0e8ff
-  classDef oci   fill:#3d1210,stroke:#E07060,color:#ffd0c8
-  classDef cd    fill:#2d1a08,stroke:#FB923C,color:#ffd8b0
-  classDef oke   fill:#071f10,stroke:#4ADE80,color:#c8ffe0
-
-  class DEV,GH,USERS,LB actor
-  class CT,TESTS,DB,PA ci
-  class AR,CR oci
-  class VER,LO,BP,DV,DO cd
-  class WN1,WN2 oke
-        </pre>
+      <div class="diagrama-wrap">
+        <img src="diagrama/image.png" alt="Arquitectura DevOps — CI/CD Pipeline" class="diagrama-img" />
       </div>
     </div>
   </section>
