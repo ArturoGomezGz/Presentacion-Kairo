@@ -58,15 +58,8 @@
       text-decoration: none;
     }
 
-    .nav-mark {
-      width: 30px; height: 30px;
-      background: var(--navy);
-      border: 1.5px solid rgba(255,255,255,0.15);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .nav-mark svg { width: 18px; height: 18px; }
+    .nav-mark { display: flex; align-items: center; }
+    .nav-mark svg { width: 32px; height: 32px; }
 
     .nav-wordmark {
       font-size: 1rem;
@@ -691,13 +684,7 @@
   <nav>
     <a href="#portada" class="nav-logo">
       <div class="nav-mark">
-        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="9" cy="4" r="2.5" stroke="white" stroke-width="1.5"/>
-          <circle cx="3" cy="14" r="2.5" stroke="white" stroke-width="1.5"/>
-          <circle cx="15" cy="14" r="2.5" stroke="white" stroke-width="1.5"/>
-          <line x1="9" y1="6.5" x2="3" y2="11.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
-          <line x1="9" y1="6.5" x2="15" y2="11.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
-        </svg>
+        <svg width="32" height="32" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="18" fill="#003865"/><rect x="1" y="1" width="78" height="78" rx="17" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" fill="none"/><line x1="23" y1="18" x2="23" y2="62" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="18" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="62" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="18" r="5" fill="#003865" stroke="white" stroke-width="2.5"/><circle cx="23" cy="62" r="5" fill="#003865" stroke="white" stroke-width="2.5"/><circle cx="55" cy="18" r="5" fill="white"/><circle cx="55" cy="62" r="5" fill="white"/><circle cx="23" cy="40" r="7" fill="white"/><circle cx="23" cy="40" r="3.5" fill="#003865"/></svg>
       </div>
       <span class="nav-wordmark">Kairo</span>
     </a>
@@ -713,6 +700,7 @@
 
   <!-- 0. PORTADA -->
   <section id="portada">
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="margin-bottom:1.5rem"><rect width="80" height="80" rx="18" fill="#EEF5FB"/><rect x="1" y="1" width="78" height="78" rx="17" stroke="#B8D4E8" stroke-width="1.5" fill="none"/><line x1="23" y1="18" x2="23" y2="62" stroke="#003865" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="18" stroke="#003865" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="62" stroke="#003865" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="18" r="5" fill="white" stroke="#003865" stroke-width="2.5"/><circle cx="23" cy="62" r="5" fill="white" stroke="#003865" stroke-width="2.5"/><circle cx="55" cy="18" r="5" fill="#C74634"/><circle cx="55" cy="62" r="5" fill="#C74634"/><circle cx="23" cy="40" r="7" fill="#003865"/><circle cx="23" cy="40" r="3.5" fill="white"/></svg>
     <div class="hero-chip"><span></span>Release 3 · DevOps · Equipo 33</div>
     <h1 class="hero-title"><em>Kairo</em></h1>
     <p class="hero-sub">Software Manager Tool — DevOps · Spring Boot · React · Oracle DB · OCI</p>
@@ -975,7 +963,10 @@
   <!-- FOOTER -->
   <div class="accent-bar"></div>
   <footer>
-    <div class="footer-logo">Kairo</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:0.4rem;">
+      <svg width="28" height="28" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="18" fill="#003865"/><rect x="1" y="1" width="78" height="78" rx="17" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" fill="none"/><line x1="23" y1="18" x2="23" y2="62" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="18" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="62" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="18" r="5" fill="#003865" stroke="white" stroke-width="2.5"/><circle cx="23" cy="62" r="5" fill="#003865" stroke="white" stroke-width="2.5"/><circle cx="55" cy="18" r="5" fill="white"/><circle cx="55" cy="62" r="5" fill="white"/><circle cx="23" cy="40" r="7" fill="white"/><circle cx="23" cy="40" r="3.5" fill="#003865"/></svg>
+      <div class="footer-logo">Kairo</div>
+    </div>
     <div class="footer-sub">Equipo 33 · Release 3 DevOps · Oracle Java Boot Camp · 2026</div>
   </footer>
 
