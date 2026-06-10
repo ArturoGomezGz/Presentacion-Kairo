@@ -992,6 +992,83 @@
     /* ── COSTO-BENEFICIO ─────────────────────────────────────────────── */
     #costo-beneficio { background: var(--bg-page); }
 
+    /* ── KPI LIVE IFRAME ─────────────────────────────────────────────── */
+    .kpi-live-wrap {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .kpi-live-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 1rem;
+      background: var(--navy-deep);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .kpi-live-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #28C840;
+      box-shadow: 0 0 6px #28C840;
+      flex-shrink: 0;
+    }
+
+    .kpi-live-url {
+      font-size: 0.6875rem;
+      font-family: 'SF Mono', Consolas, monospace;
+      color: rgba(255,255,255,0.4);
+      flex: 1;
+    }
+
+    .kpi-live-btn {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: #60A5FA;
+      text-decoration: none;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(96,165,250,0.3);
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .kpi-live-btn:hover { background: rgba(96,165,250,0.1); }
+
+    #kpi-iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      display: block;
+    }
+
+    .kpi-live-note {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      padding: 0.6rem 1rem;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .kpi-live-note a { color: #60A5FA; }
+
+    .kpi-toggle-btn {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .kpi-toggle-btn:hover { border-color: var(--navy-mid); color: var(--navy-deep); }
+
     /* ── ANÁLISIS KPIS ───────────────────────────────────────────────── */
     #analisis-kpis { background: var(--bg-card); }
 
@@ -1507,31 +1584,52 @@
       <h2 class="section-title">Dashboard KPI — Tasks completadas y horas trabajadas</h2>
       <div class="section-divider"></div>
 
-      <!-- Resumen de indicadores -->
-      <div class="kpi-summary">
-        <div class="kpi-card">
-          <div class="kpi-card-label"># Tasks completadas</div>
-          <div class="kpi-card-value"><span id="kpi-total-tasks">—</span><span> total</span></div>
+      <!-- ── IFRAME: app en vivo ──────────────────────────────────────── -->
+      <div class="kpi-live-wrap" id="kpi-live-wrap">
+        <div class="kpi-live-bar">
+          <span class="kpi-live-dot"></span>
+          <span class="kpi-live-url">http://163.192.146.178/</span>
+          <a class="kpi-live-btn" href="http://163.192.146.178/" target="_blank">Abrir en pestaña ↗</a>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-card-label">Horas reales trabajadas</div>
-          <div class="kpi-card-value"><span id="kpi-total-horas">—</span><span> hrs</span></div>
+        <iframe
+          id="kpi-iframe"
+          src="http://163.192.146.178/"
+          title="Kairo Dashboard — en vivo"
+          allowfullscreen
+        ></iframe>
+        <div class="kpi-live-note" id="kpi-iframe-note">
+          Si el dashboard no carga, inicia sesión primero en
+          <a href="http://163.192.146.178/" target="_blank">http://163.192.146.178/</a>
+          y recarga esta sección. Si no hay conexión, usa el fallback de abajo.
         </div>
       </div>
 
-      <!-- Gráfica 1: Tasks completadas por developer / sprint -->
-      <div class="chart-block">
-        <div class="chart-title">Tasks completadas por developer / sprint</div>
-        <div class="chart-wrap">
-          <canvas id="chartTasks"></canvas>
-        </div>
+      <!-- ── TOGGLE fallback ─────────────────────────────────────────── -->
+      <div style="text-align:center; margin: 1.25rem 0;">
+        <button class="kpi-toggle-btn" onclick="toggleFallback()">
+          Mostrar / ocultar gráficas de respaldo
+        </button>
       </div>
 
-      <!-- Gráfica 2: Total horas reales por developer / sprint -->
-      <div class="chart-block">
-        <div class="chart-title">Total horas reales por developer / sprint</div>
-        <div class="chart-wrap">
-          <canvas id="chartHoras"></canvas>
+      <!-- ── FALLBACK: gráficas estáticas ───────────────────────────── -->
+      <div id="kpi-fallback" style="display:none;">
+        <div class="kpi-summary">
+          <div class="kpi-card">
+            <div class="kpi-card-label"># Tasks completadas</div>
+            <div class="kpi-card-value"><span id="kpi-total-tasks">—</span><span> total</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-label">Horas reales trabajadas</div>
+            <div class="kpi-card-value"><span id="kpi-total-horas">—</span><span> hrs</span></div>
+          </div>
+        </div>
+        <div class="chart-block">
+          <div class="chart-title">Tasks completadas por developer / sprint</div>
+          <div class="chart-wrap"><canvas id="chartTasks"></canvas></div>
+        </div>
+        <div class="chart-block">
+          <div class="chart-title">Total horas reales por developer / sprint</div>
+          <div class="chart-wrap"><canvas id="chartHoras"></canvas></div>
         </div>
       </div>
 
@@ -1818,6 +1916,11 @@
         }
       }
     });
+
+    function toggleFallback() {
+      const fb = document.getElementById('kpi-fallback');
+      fb.style.display = fb.style.display === 'none' ? 'block' : 'none';
+    }
 
     function updateSummaryCards(tasksRows, horasRows) {
       const totalTasks = tasksRows.flatMap(r => Object.values(r.values)).reduce((a, b) => a + b, 0);
