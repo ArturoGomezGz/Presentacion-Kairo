@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kairo — Release 3 DevOps · Equipo 33</title>
+  <title>Kairo — Presentación Final · Equipo 33</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -633,14 +633,6 @@
     }
 
     /* ── SIGUIENTES PASOS ────────────────────────────────────────────── */
-    #siguientes {
-      background: var(--navy-deep);
-      background-image: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0,85,135,0.25) 0%, transparent 70%);
-    }
-
-    #siguientes .section-title { color: #fff; }
-    #siguientes .section-num  { color: #60A5FA; }
-
     .next-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.1);
@@ -689,6 +681,487 @@
       line-height: 1.6;
     }
 
+    /* ── PLACEHOLDER SECTIONS ───────────────────────────────────────── */
+    .placeholder-box {
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+    }
+
+    .placeholder-box p {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    .placeholder-icon {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── RESUMEN EJECUTIVO ───────────────────────────────────────────── */
+    #resumen { background: var(--bg-card); }
+
+    .resumen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) { .resumen-grid { grid-template-columns: 1fr; } }
+
+    .resumen-card {
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resumen-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .resumen-card.navy::before  { background: linear-gradient(90deg, var(--navy-mid), #60A5FA); }
+    .resumen-card.oracle::before { background: linear-gradient(90deg, var(--oracle), #F97316); }
+
+    .resumen-card-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .resumen-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy-deep);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .resumen-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .resumen-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .resumen-feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .resumen-feature-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--navy-mid);
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+
+    .resumen-feature-list.oracle li::before { background: var(--oracle); }
+
+    .ai-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: linear-gradient(135deg, #1D4ED8, #7C3AED);
+      color: #fff;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      margin-bottom: 0.6rem;
+    }
+
+    .resumen-wide {
+      background: var(--navy-deep);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .resumen-wide-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .resumen-wide h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .resumen-wide p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+
+    .resumen-wide p strong { color: rgba(255,255,255,0.85); }
+
+    /* ── BENEFICIO ECONOMICO ─────────────────────────────────────────── */
+    #beneficio { background: var(--bg-page); }
+
+    /* ── COSTOS ──────────────────────────────────────────────────────── */
+    #costos { background: var(--bg-card); }
+
+    .llm-section-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #1D4ED8, #7C3AED);
+      color: #fff; padding: 0.2rem 0.65rem; border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+
+    .llm-block-title {
+      font-size: 1.0625rem; font-weight: 800; color: var(--navy-deep);
+      letter-spacing: -0.02em; margin-bottom: 0.25rem;
+    }
+
+    .llm-block-sub {
+      font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 1.5rem;
+    }
+
+    .llm-block-sub code {
+      font-family: 'SF Mono', Consolas, monospace; font-size: 0.75rem;
+      background: var(--bg-page); padding: 0.1rem 0.4rem;
+      border-radius: 4px; border: 1px solid var(--border); color: #1D4ED8;
+    }
+
+    .token-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--navy-deep); border-radius: 14px;
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) { .token-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .token-cell {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .token-cell:last-child { border-right: none; }
+
+    .token-cell-lbl {
+      font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.07em; color: rgba(255,255,255,0.35); margin-bottom: 0.4rem;
+    }
+
+    .token-cell-val {
+      font-size: 1.875rem; font-weight: 900; letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 0.3rem;
+    }
+
+    .token-cell-val.c-blue   { color: #60A5FA; }
+    .token-cell-val.c-orange { color: #F97316; }
+    .token-cell-val.c-green  { color: #34D399; }
+
+    .token-cell-sub { font-size: 0.6875rem; color: rgba(255,255,255,0.3); line-height: 1.4; }
+
+    .cost-model-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem; margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) { .cost-model-grid { grid-template-columns: 1fr; } }
+
+    .cost-model-card {
+      background: var(--bg-page); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.25rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+
+    .cost-model-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+
+    .cost-model-card.actual::before { background: linear-gradient(90deg, #1D4ED8, #7C3AED); }
+    .cost-model-card.alt::before    { background: linear-gradient(90deg, var(--oracle), #F59E0B); }
+
+    .cost-model-tag {
+      display: inline-flex; font-size: 0.625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0.15rem 0.5rem; border-radius: 10px; margin-bottom: 0.6rem;
+    }
+
+    .cost-model-tag.actual { background: rgba(29,78,216,0.1); color: #1D4ED8; }
+    .cost-model-tag.alt    { background: rgba(234,88,12,0.1); color: var(--oracle); }
+
+    .cost-model-name {
+      font-size: 1rem; font-weight: 800; color: var(--navy-deep);
+      letter-spacing: -0.02em; margin-bottom: 0.1rem;
+    }
+
+    .cost-model-id {
+      font-size: 0.6875rem; font-family: 'SF Mono', Consolas, monospace;
+      color: var(--text-secondary); margin-bottom: 1rem;
+    }
+
+    .cost-model-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.8125rem;
+    }
+
+    .cost-model-row:last-of-type { border-bottom: none; }
+    .cost-model-row-lbl { color: var(--text-secondary); }
+    .cost-model-row-val { font-weight: 700; color: var(--navy-deep); font-variant-numeric: tabular-nums; }
+
+    .cost-per-msg {
+      margin-top: 0.875rem; padding-top: 0.875rem;
+      border-top: 2px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .cost-per-msg-lbl {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-secondary);
+    }
+
+    .cost-per-msg-val {
+      font-size: 1.625rem; font-weight: 900;
+      letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+    }
+
+    .cost-model-card.actual .cost-per-msg-val { color: #1D4ED8; }
+    .cost-model-card.alt    .cost-per-msg-val { color: var(--oracle); }
+
+    .scale-wrap { overflow-x: auto; }
+
+    .scale-tbl {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      font-size: 0.8125rem;
+    }
+
+    .scale-tbl thead th {
+      padding: 0.65rem 1rem; text-align: right;
+      font-size: 0.625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      color: rgba(255,255,255,0.45); background: var(--navy-deep);
+      white-space: nowrap;
+    }
+
+    .scale-tbl thead th:first-child { text-align: left; border-radius: 10px 0 0 0; }
+    .scale-tbl thead th:last-child  { border-radius: 0 10px 0 0; }
+
+    .scale-tbl td {
+      padding: 0.75rem 1rem; text-align: right;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-page);
+      font-variant-numeric: tabular-nums; color: var(--text-secondary);
+    }
+
+    .scale-tbl td:first-child { text-align: left; font-weight: 700; color: var(--navy-deep); }
+    .scale-tbl tbody tr:last-child td { border-bottom: none; }
+    .scale-tbl tbody tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+    .scale-tbl tbody tr:last-child td:last-child  { border-radius: 0 0 10px 0; }
+
+    .scale-tbl .s-val { color: #1D4ED8; font-weight: 600; }
+    .scale-tbl .h-val { color: var(--oracle); font-weight: 600; }
+    .scale-tbl .sv-val { color: #16A34A; font-weight: 700; }
+
+    /* ── COSTO-BENEFICIO ─────────────────────────────────────────────── */
+    #costo-beneficio { background: var(--bg-page); }
+
+    /* ── ANÁLISIS KPIS ───────────────────────────────────────────────── */
+    #analisis-kpis { background: var(--bg-card); }
+
+    /* ── MODELO RELACIONAL ───────────────────────────────────────────── */
+    #modelo {
+      background: var(--navy-deep);
+      background-image: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0,85,135,0.2) 0%, transparent 60%);
+    }
+
+    #modelo .section-title { color: #fff; }
+    #modelo .section-num  { color: #60A5FA; }
+    #modelo .placeholder-box {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── OCI CHECKLIST ───────────────────────────────────────────────── */
+    #oci-checklist { background: var(--bg-page); }
+
+    .oci-terminal {
+      background: #0f1923;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .oci-terminal-bar {
+      background: #1a2635;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .oci-terminal-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+
+    .oci-terminal-dot.red    { background: #FF5F57; }
+    .oci-terminal-dot.yellow { background: #FEBC2E; }
+    .oci-terminal-dot.green  { background: #28C840; }
+
+    .oci-terminal-title {
+      font-size: 0.6875rem; font-weight: 600;
+      color: rgba(255,255,255,0.35);
+      margin-left: 0.5rem;
+      font-family: 'SF Mono', Consolas, monospace;
+      letter-spacing: 0.04em;
+    }
+
+    .oci-terminal-body {
+      padding: 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3rem;
+    }
+
+    @media (max-width: 768px) { .oci-terminal-body { grid-template-columns: 1fr; } }
+
+    .oci-category {
+      margin-bottom: 1.25rem;
+    }
+
+    .oci-category-title {
+      font-size: 0.8125rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      font-family: 'SF Mono', Consolas, monospace;
+    }
+
+    .oci-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .oci-list li {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      font-family: 'SF Mono', Consolas, monospace;
+      line-height: 1.5;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .oci-list li::before {
+      content: '•';
+      position: absolute; left: 0;
+      color: #2DD4BF;
+    }
+
+    .oci-list li .tag {
+      font-size: 0.625rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+    }
+
+    .oci-list li .tag.blue   { background: rgba(59,130,246,0.2); color: #60A5FA; }
+    .oci-list li .tag.green  { background: rgba(34,197,94,0.2);  color: #4ADE80; }
+    .oci-list li .tag.orange { background: rgba(249,115,22,0.2); color: #FB923C; }
+
+    .oci-list li.missing {
+      color: rgba(255,255,255,0.2);
+      text-decoration: line-through;
+      text-decoration-color: rgba(255,80,80,0.4);
+    }
+
+    .oci-list li.missing::before {
+      content: '✗';
+      color: rgba(255,80,80,0.45);
+      font-size: 0.625rem;
+    }
+
+    .oci-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 0.75rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .oci-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.6875rem;
+      color: rgba(255,255,255,0.3);
+      font-family: 'SF Mono', Consolas, monospace;
+    }
+
+    .oci-legend-item .tag { margin-left: 0; }
+
+    .oci-legend-sep {
+      color: rgba(255,255,255,0.1);
+      font-size: 0.75rem;
+      align-self: center;
+    }
+
+    .oci-legend-missing {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.6875rem;
+      color: rgba(255,80,80,0.4);
+      font-family: 'SF Mono', Consolas, monospace;
+    }
+
+    /* ── LESSONS LEARNED ─────────────────────────────────────────────── */
+    #lessons {
+      background: var(--navy-deep);
+      background-image: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0,85,135,0.25) 0%, transparent 70%);
+    }
+
+    #lessons .section-title { color: #fff; }
+    #lessons .section-num  { color: #60A5FA; }
+    #lessons .placeholder-box {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.45);
+    }
+
     /* ── FOOTER ──────────────────────────────────────────────────────── */
     footer {
       background: var(--navy-deep);
@@ -730,20 +1203,27 @@
     </a>
     <ul class="nav-links">
       <li><a href="#portada">Portada</a></li>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#beneficio">Beneficio</a></li>
+      <li><a href="#costos">Costos</a></li>
+      <li><a href="#costo-beneficio">Costo-Beneficio</a></li>
       <li><a href="#kpis">KPIs</a></li>
+      <li><a href="#analisis-kpis">Análisis</a></li>
+      <li><a href="#modelo">Modelo</a></li>
       <li><a href="#arquitectura">Arquitectura</a></li>
+      <li><a href="#oci-checklist">OCI</a></li>
       <li><a href="#video">Video</a></li>
-      <li><a href="#siguientes">Siguientes pasos</a></li>
+      <li><a href="#lessons">Lessons</a></li>
     </ul>
-    <span class="nav-badge">Equipo 33 · Release 3</span>
+    <span class="nav-badge">Equipo 33 · Final</span>
   </nav>
 
   <!-- 0. PORTADA -->
   <section id="portada">
     <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="margin-bottom:1.5rem"><rect width="80" height="80" rx="18" fill="#EEF5FB"/><rect x="1" y="1" width="78" height="78" rx="17" stroke="#B8D4E8" stroke-width="1.5" fill="none"/><line x1="23" y1="18" x2="23" y2="62" stroke="#003865" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="18" stroke="#003865" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="62" stroke="#003865" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="18" r="5" fill="white" stroke="#003865" stroke-width="2.5"/><circle cx="23" cy="62" r="5" fill="white" stroke="#003865" stroke-width="2.5"/><circle cx="55" cy="18" r="5" fill="#C74634"/><circle cx="55" cy="62" r="5" fill="#C74634"/><circle cx="23" cy="40" r="7" fill="#003865"/><circle cx="23" cy="40" r="3.5" fill="white"/></svg>
-    <div class="hero-chip"><span></span>Release 3 · DevOps · Equipo 33</div>
+    <div class="hero-chip"><span></span>Presentación Final · Equipo 33</div>
     <h1 class="hero-title"><em>Kairo</em></h1>
-    <p class="hero-sub">Software Manager Tool — DevOps · Spring Boot · React · Oracle DB · OCI</p>
+    <p class="hero-sub">Software Management Tool — Spring Boot · React · Oracle DB · OCI · IA</p>
 
     <div class="portada-team">
 
@@ -797,11 +1277,234 @@
     </div>
   </section>
 
-  <!-- 1. KPIs -->
+  <!-- 1. RESUMEN EJECUTIVO -->
+  <section id="resumen">
+    <div class="section-inner">
+      <span class="section-num">01 — Resumen Ejecutivo</span>
+      <h2 class="section-title">Resumen ejecutivo de la aplicación</h2>
+      <div class="section-divider"></div>
+
+      <div class="resumen-grid">
+
+        <div class="resumen-card navy">
+          <div class="resumen-card-icon">🎯</div>
+          <h3>¿Qué es Kairo?</h3>
+          <p>Herramienta web de gestión ágil diseñada para equipos de desarrollo de software. Centraliza la planificación de sprints, el seguimiento de tareas y las métricas de productividad en un solo lugar.</p>
+          <ul class="resumen-feature-list">
+            <li>Gestión de proyectos, sprints y backlog</li>
+            <li>Vista Kanban y lista con filtros por estado, prioridad y asignado</li>
+            <li>Dashboard con 9 widgets de métricas en tiempo real</li>
+            <li>Historial de actividad inmutable por tarea</li>
+          </ul>
+        </div>
+
+        <div class="resumen-card oracle">
+          <div class="resumen-card-icon">⚡</div>
+          <h3>¿Cómo mejora la productividad?</h3>
+          <p>Elimina el tiempo de seguimiento manual que consume cada reunión de sprint. Los managers ven el estado real del equipo en segundos; los developers actualizan su trabajo sin cambiar de contexto.</p>
+          <ul class="resumen-feature-list oracle">
+            <li>Visibilidad inmediata: velocidad, eficiencia y carga por persona</li>
+            <li>Alertas automáticas de sprints por vencer y tareas bloqueadas</li>
+            <li>Registro de horas reales al completar → datos objetivos por sprint</li>
+            <li>Los KPIs del dashboard evidencian la distribución real del trabajo</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="resumen-wide">
+        <div class="resumen-wide-icon">🤖</div>
+        <div>
+          <div class="ai-tag">✦ Feature de IA</div>
+          <h3>NLU con Claude API — Bot de Telegram</h3>
+          <p>
+            Integramos <strong>Claude API (claude-haiku-4-5)</strong> en el bot de Telegram de Kairo mediante un componente de procesamiento de lenguaje natural (<strong>NaturalLanguageRouter</strong>).
+            En lugar de memorizar comandos, los usuarios —especialmente los miembros del equipo— escriben en lenguaje natural:
+            <em style="color:rgba(255,255,255,0.7)">"dame mis tareas"</em>, <em style="color:rgba(255,255,255,0.7)">"marca la tarea 5 como done con 2 horas"</em>,
+            <em style="color:rgba(255,255,255,0.7)">"pon la tarea 3 en progreso"</em>.
+            Claude clasifica la intención, extrae los parámetros y ejecuta el comando.
+            <strong>Nuestro equipo lo utilizó recurrentemente durante el proyecto</strong>, siendo los miembros no-administradores quienes más lo adoptaron para consultar y actualizar tareas sin abrir el portal web.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. BENEFICIO ECONÓMICO -->
+  <section id="beneficio">
+    <div class="section-inner">
+      <span class="section-num">02 — Beneficio Económico</span>
+      <h2 class="section-title">Beneficio Económico</h2>
+      <div class="section-divider"></div>
+      <div class="placeholder-box">
+        <div class="placeholder-icon">💰</div>
+        <p>Justificar cuánto ($) se va a ahorrar con la aplicación.<br>Justificar cómo se mejoró la productividad del equipo de desarrollo (meta: 20%).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. RESUMEN DE COSTOS -->
+  <section id="costos">
+    <div class="section-inner">
+      <span class="section-num">03 — Resumen de Costos</span>
+      <h2 class="section-title">Resumen de Costos (USD)</h2>
+      <div class="section-divider"></div>
+      <!-- ── IA / Claude API ─────────────────────────────────────── -->
+      <div style="margin-bottom:2rem;">
+        <span class="llm-section-label">&#9889; IA · Claude API</span>
+        <p class="llm-block-title">Costo de Inteligencia Artificial — NaturalLanguageRouter</p>
+        <p class="llm-block-sub">Cálculo exacto basado en el código en producción: <code>NaturalLanguageRouter.java</code> · modelo <code>claude-haiku-4-5</code> · <code>max_tokens=150</code></p>
+
+        <!-- Token breakdown -->
+        <div class="token-grid">
+          <div class="token-cell">
+            <div class="token-cell-lbl">System prompt</div>
+            <div class="token-cell-val c-blue">~340</div>
+            <div class="token-cell-sub">tokens · texto fijo, cada llamada</div>
+          </div>
+          <div class="token-cell">
+            <div class="token-cell-lbl">Mensaje usuario</div>
+            <div class="token-cell-val c-blue">~25</div>
+            <div class="token-cell-sub">tokens · comando en lenguaje natural</div>
+          </div>
+          <div class="token-cell">
+            <div class="token-cell-lbl">Total input / msg</div>
+            <div class="token-cell-val c-orange">~365</div>
+            <div class="token-cell-sub">tokens por request</div>
+          </div>
+          <div class="token-cell">
+            <div class="token-cell-lbl">Output (JSON)</div>
+            <div class="token-cell-val c-green">~50</div>
+            <div class="token-cell-sub">tokens · max_tokens=150, real ~50</div>
+          </div>
+        </div>
+
+        <!-- Model comparison -->
+        <div class="cost-model-grid">
+          <div class="cost-model-card actual">
+            <span class="cost-model-tag actual">En producción</span>
+            <div class="cost-model-name">Claude Haiku 4.5</div>
+            <div class="cost-model-id">claude-haiku-4-5</div>
+            <div class="cost-model-row">
+              <span class="cost-model-row-lbl">Input ($/1M tokens)</span>
+              <span class="cost-model-row-val">$1.00</span>
+            </div>
+            <div class="cost-model-row">
+              <span class="cost-model-row-lbl">Output ($/1M tokens)</span>
+              <span class="cost-model-row-val">$5.00</span>
+            </div>
+            <div class="cost-model-row">
+              <span class="cost-model-row-lbl">Costo input (365 tok)</span>
+              <span class="cost-model-row-val">$0.000365</span>
+            </div>
+            <div class="cost-model-row">
+              <span class="cost-model-row-lbl">Costo output (50 tok)</span>
+              <span class="cost-model-row-val">$0.000250</span>
+            </div>
+            <div class="cost-per-msg">
+              <span class="cost-per-msg-lbl">Costo por mensaje</span>
+              <span class="cost-per-msg-val">$0.00062</span>
+            </div>
+          </div>
+
+          <div class="cost-model-card alt">
+            <span class="cost-model-tag alt">Referencia (modelo anterior)</span>
+            <div class="cost-model-name">Claude Sonnet 4.6</div>
+            <div class="cost-model-id">claude-sonnet-4-6</div>
+            <div class="cost-model-row">
+              <span class="cost-model-row-lbl">Input ($/1M tokens)</span>
+              <span class="cost-model-row-val">$3.00</span>
+            </div>
+            <div class="cost-model-row">
+              <span class="cost-model-row-lbl">Output ($/1M tokens)</span>
+              <span class="cost-model-row-val">$15.00</span>
+            </div>
+            <div class="cost-model-row">
+              <span class="cost-model-row-lbl">Costo input (365 tok)</span>
+              <span class="cost-model-row-val">$0.001095</span>
+            </div>
+            <div class="cost-model-row">
+              <span class="cost-model-row-lbl">Costo output (50 tok)</span>
+              <span class="cost-model-row-val">$0.000750</span>
+            </div>
+            <div class="cost-per-msg">
+              <span class="cost-per-msg-lbl">Costo por mensaje</span>
+              <span class="cost-per-msg-val">$0.00185</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scale projections -->
+        <div class="scale-wrap">
+          <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-secondary);margin-bottom:0.6rem;">Proyecciones a escala (30 días)</div>
+          <table class="scale-tbl">
+            <thead>
+              <tr>
+                <th>Volumen</th>
+                <th>Haiku /día</th>
+                <th>Sonnet /día</th>
+                <th>Haiku /mes</th>
+                <th>Sonnet /mes</th>
+                <th>Ahorro vs Sonnet</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>100 msg/día</td>
+                <td class="h-val">$0.062</td>
+                <td class="s-val">$0.185</td>
+                <td class="h-val">$1.85</td>
+                <td class="s-val">$5.55</td>
+                <td class="sv-val">$3.70 (67%)</td>
+              </tr>
+              <tr>
+                <td>1,000 msg/día</td>
+                <td class="h-val">$0.62</td>
+                <td class="s-val">$1.85</td>
+                <td class="h-val">$18.45</td>
+                <td class="s-val">$55.50</td>
+                <td class="sv-val">$37.05 (67%)</td>
+              </tr>
+              <tr>
+                <td>10,000 msg/día</td>
+                <td class="h-val">$6.15</td>
+                <td class="s-val">$18.50</td>
+                <td class="h-val">$184.50</td>
+                <td class="s-val">$555.00</td>
+                <td class="sv-val">$370.50 (67%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── Pendiente: RH + OCI ───────────────────────────────────── -->
+      <div class="placeholder-box">
+        <div class="placeholder-icon">📊</div>
+        <p>Pendiente · Costo Recurso Humano ($25 dls × hora)<br>Costo de Infraestructura OCI (Febrero – Junio 10, 2026)<br>Detalle de costos · ¿Cuánto consume la aplicación en 24 horas? (Min / Max)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. RELACIÓN COSTO-BENEFICIO -->
+  <section id="costo-beneficio">
+    <div class="section-inner">
+      <span class="section-num">04 — Relación Costo-Beneficio</span>
+      <h2 class="section-title">Relación Costo-Beneficio</h2>
+      <div class="section-divider"></div>
+      <div class="placeholder-box">
+        <div class="placeholder-icon">⚖️</div>
+        <p>Análisis costo-beneficio con justificación.<br>¿En cuánto venderías tu aplicación (USD)? Justifica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. KPIs -->
   <section id="kpis">
     <div class="section-inner">
-      <span class="section-num">01 — KPI</span>
-      <h2 class="section-title">Tasks completadas y horas trabajadas</h2>
+      <span class="section-num">05 — Dashboard KPI</span>
+      <h2 class="section-title">Dashboard KPI — Tasks completadas y horas trabajadas</h2>
       <div class="section-divider"></div>
 
       <!-- Resumen de indicadores -->
@@ -835,11 +1538,37 @@
     </div>
   </section>
 
-  <!-- 4. ARQUITECTURA DEVOPS -->
+  <!-- 6. ANÁLISIS DE KPIs -->
+  <section id="analisis-kpis">
+    <div class="section-inner">
+      <span class="section-num">06 — Análisis de KPIs</span>
+      <h2 class="section-title">Análisis de KPIs: Completed Tasks y Worked Hours</h2>
+      <div class="section-divider"></div>
+      <div class="placeholder-box">
+        <div class="placeholder-icon">🔍</div>
+        <p>Usando el dashboard, realizar un análisis comparativo del trabajo de todos los integrantes del equipo.<br>Describir insights encontrados en la forma de trabajo del equipo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. MODELO RELACIONAL FINAL -->
+  <section id="modelo">
+    <div class="section-inner">
+      <span class="section-num">07 — Modelo Relacional</span>
+      <h2 class="section-title">Modelo Relacional Final</h2>
+      <div class="section-divider" style="background: linear-gradient(90deg, #60A5FA, var(--oracle));"></div>
+      <div class="placeholder-box">
+        <div class="placeholder-icon">🗄️</div>
+        <p>Modelo legible — fotografía del modelo en Oracle Autonomous Database sobre OCI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ARQUITECTURA DEVOPS -->
   <section id="arquitectura">
     <div class="section-inner">
-      <span class="section-num">02 — Arquitectura DevOps</span>
-      <h2 class="section-title">Arquitectura DevOps</h2>
+      <span class="section-num">08 — Arquitectura Integrada</span>
+      <h2 class="section-title">Arquitectura Integrada Cloud Native / IA / DevOps</h2>
       <div class="section-divider" style="background: linear-gradient(90deg, #60A5FA, var(--oracle));"></div>
 
       <div class="diagrama-wrap">
@@ -848,59 +1577,175 @@
     </div>
   </section>
 
-  <!-- 5. VIDEO DEVOPS -->
+  <!-- 9. OCI DEPLOYMENT CHECKLIST -->
+  <section id="oci-checklist">
+    <div class="section-inner">
+      <span class="section-num">09 — OCI Deployment</span>
+      <h2 class="section-title">OCI Deployment Checklist</h2>
+      <div class="section-divider"></div>
+      <div class="oci-terminal">
+        <div class="oci-terminal-bar">
+          <span class="oci-terminal-dot red"></span>
+          <span class="oci-terminal-dot yellow"></span>
+          <span class="oci-terminal-dot green"></span>
+          <span class="oci-terminal-title">OCI Deployment — Kairo · Equipo 33</span>
+        </div>
+        <div class="oci-terminal-body">
+
+          <!-- Columna izquierda -->
+          <div>
+            <div class="oci-category">
+              <div class="oci-category-title">Containerization</div>
+              <ul class="oci-list">
+                <li>Dockerfile multi-stage build (Maven → JRE)</li>
+                <li>Eclipse Temurin 17 JRE en imagen final</li>
+                <li>Sin JDK en runtime (imagen optimizada)</li>
+                <li>Image tagged con SHA de commit <span class="tag blue">OCIR</span></li>
+              </ul>
+            </div>
+
+            <div class="oci-category">
+              <div class="oci-category-title">Cloud Provider Integration (OCI)</div>
+              <ul class="oci-list">
+                <li>Oracle Container Engine for Kubernetes (OKE) <span class="tag blue">OCI</span></li>
+                <li>3 nodos VM.Standard.E3.Flex (2 OCPU, 6 GB RAM)</li>
+                <li>Oracle Autonomous Database — ATP <span class="tag blue">OCI</span></li>
+                <li>OCIR — mx-queretaro-1.ocir.io <span class="tag blue">OCI</span></li>
+                <li>OCI Load Balancer — IP_HASH, port 80→8080</li>
+                <li>Virtual Cloud Network (VCN) — 10.0.0.0/16</li>
+                <li>NAT Gateway + Service Gateway configurados</li>
+                <li>OCI Object Storage — deployment config</li>
+                <li>Oracle Wallet para conexión ADB</li>
+                <li>OCI Vault — gestión de secretos <span class="tag blue">OCI</span></li>
+              </ul>
+            </div>
+
+            <div class="oci-category">
+              <div class="oci-category-title">Security</div>
+              <ul class="oci-list">
+                <li>JWT authentication (HMAC-SHA256, 24h expiry)</li>
+                <li>BCrypt password hashing</li>
+                <li>Kubernetes Secrets (dbpassword, wallet, UI)</li>
+                <li>Oracle Wallet montado como volumen en pods</li>
+                <li>Stateless sessions — CSRF disabled</li>
+                <li>CORS configurado</li>
+                <li>Autorización por proyecto (manager / participant)</li>
+                <li class="missing">K8s NetworkPolicy — restricción entre pods</li>
+                <li class="missing">K8s RBAC — ServiceAccount / RoleBinding</li>
+              </ul>
+            </div>
+
+            <div class="oci-category">
+              <div class="oci-category-title">Resilience</div>
+              <ul class="oci-list">
+                <li>2 réplicas en Deployment</li>
+                <li>Topology Spread Constraints (max 1 pod/nodo)</li>
+                <li>HikariCP connection pooling (Spring Boot default)</li>
+                <li>Manual rollback pipeline (GitHub Actions) <span class="tag orange">DevOps</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Columna derecha -->
+          <div>
+            <div class="oci-category">
+              <div class="oci-category-title">Scalability</div>
+              <ul class="oci-list">
+                <li>3 nodos OKE con capacidad de escalar</li>
+                <li>Database connection pooling (HikariCP)</li>
+                <li>Paginación eficiente (default 20, max 500)</li>
+                <li>Kubernetes rolling update strategy</li>
+                <li class="missing">HPA — Horizontal Pod Autoscaler</li>
+              </ul>
+            </div>
+
+            <div class="oci-category">
+              <div class="oci-category-title">DevOps &amp; CI/CD</div>
+              <ul class="oci-list">
+                <li>GitHub Actions CI — tests en cada PR/push <span class="tag green">CI</span></li>
+                <li>Backend unit tests (JUnit 5 + Mockito, 8 suites)</li>
+                <li>Frontend tests (React Testing Library)</li>
+                <li>GitHub Actions CD — build → OCIR → OKE <span class="tag green">CD</span></li>
+                <li>Aprobación requerida para deploy a producción</li>
+                <li>Zero-downtime rolling deployment</li>
+                <li>Rollback disponible via workflow_dispatch</li>
+              </ul>
+            </div>
+
+            <div class="oci-category">
+              <div class="oci-category-title">API Management</div>
+              <ul class="oci-list">
+                <li>RESTful API design (Spring Boot 3)</li>
+                <li>SpringDoc OpenAPI — Swagger UI</li>
+                <li>Spring Security por endpoint</li>
+                <li>Claude API (Haiku 4.5) — NLU bot <span class="tag orange">IA</span></li>
+                <li class="missing">OCI API Gateway</li>
+              </ul>
+            </div>
+
+            <div class="oci-category">
+              <div class="oci-category-title">Data Management</div>
+              <ul class="oci-list">
+                <li>ADB automated backups <span class="tag blue">OCI</span></li>
+                <li>Data encryption at rest (ADB)</li>
+                <li>Oracle Wallet — conexión TLS al DB</li>
+                <li>ddl-auto: validate (schema protegido en prod)</li>
+              </ul>
+            </div>
+
+            <div class="oci-category">
+              <div class="oci-category-title">Cost Optimization</div>
+              <ul class="oci-list">
+                <li>ADB Free Tier habilitado</li>
+                <li>Claude Haiku 4.5 — 3× más barato que Sonnet</li>
+                <li>JRE-only image — menor footprint</li>
+                <li>Paginación — evita queries sin límite</li>
+                <li class="missing">Monitoring / Observabilidad (Prometheus)</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Leyenda -->
+        <div class="oci-legend">
+          <div class="oci-legend-item"><span class="tag blue">OCI</span> Recurso de Oracle Cloud Infrastructure</div>
+          <span class="oci-legend-sep">|</span>
+          <div class="oci-legend-item"><span class="tag green">CI</span> Integración continua (GitHub Actions)</div>
+          <span class="oci-legend-sep">|</span>
+          <div class="oci-legend-item"><span class="tag green">CD</span> Despliegue continuo a producción</div>
+          <span class="oci-legend-sep">|</span>
+          <div class="oci-legend-item"><span class="tag orange">IA</span> Inteligencia Artificial — Claude API</div>
+          <span class="oci-legend-sep">|</span>
+          <div class="oci-legend-item"><span class="tag orange">DevOps</span> Práctica / herramienta DevOps</div>
+          <span class="oci-legend-sep">|</span>
+          <div class="oci-legend-missing">✗ No implementado</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. VIDEO DEMO -->
   <section id="video">
     <div class="section-inner">
-      <span class="section-num">03 — Video DevOps</span>
-      <h2 class="section-title">Video DevOps</h2>
+      <span class="section-num">10 — Video DEMO</span>
+      <h2 class="section-title">Video DEMO</h2>
       <div class="section-divider"></div>
 
       <div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/2abef1a62461456eaf6fcd059a21795d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
     </div>
   </section>
 
-  <!-- 6. SIGUIENTES PASOS -->
-  <section id="siguientes">
+  <!-- 11. LESSONS LEARNED -->
+  <section id="lessons">
     <div class="section-inner">
-      <span class="section-num">04 — Siguientes pasos</span>
-      <h2 class="section-title">Siguientes pasos</h2>
+      <span class="section-num">11 — Lessons Learned</span>
+      <h2 class="section-title">Lessons Learned</h2>
       <div class="section-divider" style="background: linear-gradient(90deg, #60A5FA, var(--oracle));"></div>
-
-      <div class="next-card">
-        <div class="next-card-header"></div>
-
-        <div class="next-item">
-          <span class="next-dot"></span>
-          <div>
-            <h4>Health Checks Recurrentes</h4>
-            <p>Implementar health checks automatizados y periódicos sobre todos los servicios del sistema para detectar degradaciones antes de que impacten a los usuarios.</p>
-          </div>
-        </div>
-
-        <div class="next-item">
-          <span class="next-dot oracle"></span>
-          <div>
-            <h4>Medidas de Rendimiento Recurrentes</h4>
-            <p>Establecer recolección continua de métricas clave (latencia, throughput, uso de recursos) con dashboards automatizados que permitan comparar tendencias entre sprints.</p>
-          </div>
-        </div>
-
-        <div class="next-item">
-          <span class="next-dot"></span>
-          <div>
-            <h4>Pruebas Exhaustivas de Rendimiento</h4>
-            <p>Diseñar y ejecutar suites de pruebas de carga, estrés y resistencia que cubran los flujos críticos del sistema, con umbrales de aceptación definidos para cada release.</p>
-          </div>
-        </div>
-
-        <div class="next-item">
-          <span class="next-dot oracle"></span>
-          <div>
-            <h4>Mejoras en CI para Mayor Cobertura</h4>
-            <p>Ampliar el pipeline de integración continua para incluir análisis estático, pruebas de seguridad (SAST), cobertura de código y validaciones de calidad automatizadas en cada PR.</p>
-          </div>
-        </div>
-
+      <div class="placeholder-box">
+        <div class="placeholder-icon">💡</div>
+        <p>Insights y experiencias ganadas durante el proyecto.<br>¿Qué funcionó bien? ¿Qué salió mal? ¿Qué repetirías y qué evitarías?</p>
       </div>
     </div>
   </section>
@@ -912,7 +1757,7 @@
       <svg width="28" height="28" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="18" fill="#003865"/><rect x="1" y="1" width="78" height="78" rx="17" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" fill="none"/><line x1="23" y1="18" x2="23" y2="62" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="18" stroke="white" stroke-width="3" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="62" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="18" r="5" fill="#003865" stroke="white" stroke-width="2.5"/><circle cx="23" cy="62" r="5" fill="#003865" stroke="white" stroke-width="2.5"/><circle cx="55" cy="18" r="5" fill="white"/><circle cx="55" cy="62" r="5" fill="white"/><circle cx="23" cy="40" r="7" fill="white"/><circle cx="23" cy="40" r="3.5" fill="#003865"/></svg>
       <div class="footer-logo">Kairo</div>
     </div>
-    <div class="footer-sub">Equipo 33 · Release 3 DevOps · Oracle Java Boot Camp · 2026</div>
+    <div class="footer-sub">Equipo 33 · Presentación Final · Oracle Java Boot Camp · 2026</div>
   </footer>
 
   <script>
