@@ -1239,6 +1239,101 @@
       color: rgba(255,255,255,0.45);
     }
 
+    .ll-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .ll-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .ll-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .ll-card-icon { font-size: 1.25rem; }
+
+    .ll-card-title {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .ll-card-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    @media (max-width: 640px) { .ll-card-body { grid-template-columns: 1fr; } }
+
+    .ll-col {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .ll-col:first-child {
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .ll-col-label {
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .ll-col.worked .ll-col-label { color: #4ADE80; }
+    .ll-col.improve .ll-col-label { color: #FCD34D; }
+
+    .ll-col-label::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .ll-col.worked .ll-col-label::before  { background: #4ADE80; }
+    .ll-col.improve .ll-col-label::before { background: #FCD34D; }
+
+    .ll-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .ll-list li {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .ll-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .ll-list li strong { color: rgba(255,255,255,0.9); font-weight: 700; }
+
     /* ── FOOTER ──────────────────────────────────────────────────────── */
     footer {
       background: var(--navy-deep);
@@ -1840,9 +1935,86 @@
       <span class="section-num">11 — Lessons Learned</span>
       <h2 class="section-title">Lessons Learned</h2>
       <div class="section-divider" style="background: linear-gradient(90deg, #60A5FA, var(--oracle));"></div>
-      <div class="placeholder-box">
-        <div class="placeholder-icon">💡</div>
-        <p>Insights y experiencias ganadas durante el proyecto.<br>¿Qué funcionó bien? ¿Qué salió mal? ¿Qué repetirías y qué evitarías?</p>
+      <div class="ll-grid">
+
+        <!-- DevOps / OCI -->
+        <div class="ll-card">
+          <div class="ll-card-header">
+            <span class="ll-card-icon">⚙️</span>
+            <span class="ll-card-title">Tecnología — OCI &amp; DevOps</span>
+          </div>
+          <div class="ll-card-body">
+            <div class="ll-col worked">
+              <div class="ll-col-label">Lo que funcionó</div>
+              <ul class="ll-list">
+                <li>Una vez superado el deploy inicial en OCI, la operación diaria es fluida — <strong>pasas la curva y estás del otro lado</strong></li>
+                <li><strong>CD eliminó la fricción de subir cambios</strong> — push a master y el pipeline se encarga del resto</li>
+                <li><strong>CI actuó como red de seguridad</strong> — los pipelines de pruebas automáticas evitaron que errores importantes llegaran a producción</li>
+                <li>La diferencia entre el <strong>antes y el después de CI/CD es notable</strong> — velocidad y confianza aumentaron significativamente</li>
+              </ul>
+            </div>
+            <div class="ll-col improve">
+              <div class="ll-col-label">Lo que haríamos diferente</div>
+              <ul class="ll-list">
+                <li><strong>Implementar DevOps desde el día uno</strong> y desarrollar sobre esa base, no como algo que se agrega después</li>
+                <li>No subestimar la curva de aprendizaje de OCI — reservar tiempo dedicado a entender la infraestructura antes de empezar a desarrollar</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- IA -->
+        <div class="ll-card">
+          <div class="ll-card-header">
+            <span class="ll-card-icon">🤖</span>
+            <span class="ll-card-title">Inteligencia Artificial — NaturalLanguageRouter</span>
+          </div>
+          <div class="ll-card-body">
+            <div class="ll-col worked">
+              <div class="ll-col-label">Lo que funcionó</div>
+              <ul class="ll-list">
+                <li>Integrar Claude API con Spring Boot resultó directo una vez definida la arquitectura del componente</li>
+                <li>El <strong>system prompt bien diseñado fue la clave</strong> — cuando representa fielmente el objetivo del NLU, la clasificación es precisa y confiable</li>
+                <li>Limitar <code>max_tokens</code> a 150 mantuvo las respuestas enfocadas y el costo bajo</li>
+              </ul>
+            </div>
+            <div class="ll-col improve">
+              <div class="ll-col-label">Lo que haríamos diferente</div>
+              <ul class="ll-list">
+                <li>Dedicar más tiempo al <strong>diseño del system prompt desde el inicio</strong> — fue el factor más crítico y se subestimó</li>
+                <li>Crear un conjunto de pruebas para el NLU antes de integrar, no después — la clasificación incorrecta inicial tardó en detectarse</li>
+                <li>Documentar las iteraciones del prompt para no repetir configuraciones que no funcionaron</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Equipo y Gestión -->
+        <div class="ll-card">
+          <div class="ll-card-header">
+            <span class="ll-card-icon">👥</span>
+            <span class="ll-card-title">Equipo &amp; Gestión — Kairo gestionado con Kairo</span>
+          </div>
+          <div class="ll-card-body">
+            <div class="ll-col worked">
+              <div class="ll-col-label">Lo que funcionó</div>
+              <ul class="ll-list">
+                <li>Desde que tuvimos la herramienta lista <strong>la usamos para gestionar el propio proyecto</strong> — fuimos nuestros propios usuarios</li>
+                <li>Los <strong>indicadores de story points + horas reales</strong> dieron un panorama más preciso que el conteo de tareas solo</li>
+                <li>Un developer con pocas tareas pero muchas horas vs otro con muchas tareas y pocas horas — <strong>los KPIs revelaron la carga real</strong> y el admin pudo redistribuir sobre la marcha</li>
+                <li>La visibilidad del dashboard <strong>facilitó tomar decisiones informadas</strong> en cada sprint</li>
+              </ul>
+            </div>
+            <div class="ll-col improve">
+              <div class="ll-col-label">Lo que haríamos diferente</div>
+              <ul class="ll-list">
+                <li>Empezar a usar la herramienta <strong>desde el Sprint 0</strong>, no esperar a que esté "lista" — los datos tempranos son igual de valiosos</li>
+                <li>Establecer una convención de story points desde el inicio para que las comparativas entre sprints sean consistentes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
