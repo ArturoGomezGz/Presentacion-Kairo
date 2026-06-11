@@ -1,0 +1,320 @@
+/**
+ * Oracle × ITESM Design System
+ * colors_and_type.css — Design tokens as CSS custom properties
+ *
+ * Usage: Import this file at the top of your HTML/CSS.
+ * All tokens are on :root for global access.
+ */
+
+/* ─────────────────────────────────────────
+   GOOGLE FONTS
+   ───────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+
+  /* ─────────────────────────────────────────
+     BRAND COLORS
+     ───────────────────────────────────────── */
+
+  /* Oracle Red */
+  --color-oracle-50:  #FDF1EF;
+  --color-oracle-100: #F9DDD9;
+  --color-oracle-200: #F2B8B0;
+  --color-oracle-300: #E88B7E;
+  --color-oracle-400: #DC614F;
+  --color-oracle-500: #C74634; /* Primary Oracle Red */
+  --color-oracle-600: #A83B2B;
+  --color-oracle-700: #9E3829; /* Dark / hover */
+  --color-oracle-800: #7A2B1F;
+  --color-oracle-900: #561E16;
+
+  /* ITESM Blue */
+  --color-itesm-50:  #E8F0F7;
+  --color-itesm-100: #CCE0EE;
+  --color-itesm-200: #99C1DD;
+  --color-itesm-300: #5A96C1;
+  --color-itesm-400: #2B70A0;
+  --color-itesm-500: #005587; /* Mid blue */
+  --color-itesm-600: #004472;
+  --color-itesm-700: #003865; /* Primary ITESM Navy */
+  --color-itesm-800: #002A4C;
+  --color-itesm-900: #001C33;
+
+  /* ─────────────────────────────────────────
+     NEUTRAL SCALE
+     ───────────────────────────────────────── */
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #FAFAFA;
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #E5E7EB;
+  --color-neutral-300: #D1D5DB;
+  --color-neutral-400: #9CA3AF;
+  --color-neutral-500: #6B7280;
+  --color-neutral-600: #4B5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1F2937;
+  --color-neutral-900: #111827;
+
+  /* ─────────────────────────────────────────
+     STATUS / SEMANTIC COLORS
+     (preserved from existing codebase)
+     ───────────────────────────────────────── */
+
+  /* Todo */
+  --color-status-todo-bg:   #F3F4F6;
+  --color-status-todo-text: #374151;
+
+  /* In Progress */
+  --color-status-progress-bg:   #DBEAFE;
+  --color-status-progress-text: #1D4ED8;
+
+  /* Blocked */
+  --color-status-blocked-bg:   #FEE2E2;
+  --color-status-blocked-text: #B91C1C;
+
+  /* Done */
+  --color-status-done-bg:   #DCFCE7;
+  --color-status-done-text: #15803D;
+
+  /* Planning */
+  --color-status-planning-bg:   #FEF9C3;
+  --color-status-planning-text: #A16207;
+
+  /* Closed / Paused */
+  --color-status-closed-bg:   #F3F4F6;
+  --color-status-closed-text: #6B7280;
+
+  /* Paused */
+  --color-status-paused-bg:   #FFEDD5;
+  --color-status-paused-text: #C2410C;
+
+  /* Priority High */
+  --color-priority-high-bg:   #FEE2E2;
+  --color-priority-high-text: #B91C1C;
+
+  /* Priority Medium */
+  --color-priority-medium-bg:   #FEF9C3;
+  --color-priority-medium-text: #A16207;
+
+  /* Priority Low */
+  --color-priority-low-bg:   #F3F4F6;
+  --color-priority-low-text: #4B5563;
+
+  /* ─────────────────────────────────────────
+     SEMANTIC ALIAS TOKENS
+     ───────────────────────────────────────── */
+
+  /* Surfaces */
+  --surface-page:       var(--color-neutral-100);
+  --surface-card:       var(--color-neutral-0);
+  --surface-sidebar:    var(--color-itesm-700);
+  --surface-overlay:    rgba(0, 0, 0, 0.40);
+
+  /* Foreground */
+  --fg-primary:         var(--color-neutral-900);
+  --fg-secondary:       var(--color-neutral-600);
+  --fg-muted:           var(--color-neutral-400);
+  --fg-on-dark:         var(--color-neutral-0);
+  --fg-on-dark-muted:   rgba(255,255,255,0.60);
+
+  /* Brand */
+  --brand-primary:      var(--color-oracle-500);
+  --brand-primary-hover: var(--color-oracle-700);
+  --brand-primary-light: var(--color-oracle-50);
+  --brand-secondary:    var(--color-itesm-700);
+  --brand-secondary-mid: var(--color-itesm-500);
+  --brand-secondary-light: var(--color-itesm-50);
+
+  /* Interactive */
+  --interactive-cta:       var(--color-oracle-500);
+  --interactive-cta-hover: var(--color-oracle-700);
+  --interactive-focus:     var(--color-itesm-500);
+  --interactive-link:      var(--color-itesm-500);
+  --interactive-link-hover: var(--color-itesm-700);
+
+  /* Danger */
+  --color-danger:       #DC2626;
+  --color-danger-bg:    #FEE2E2;
+  --color-danger-hover: #B91C1C;
+
+  /* ─────────────────────────────────────────
+     BORDER
+     ───────────────────────────────────────── */
+  --border-default:     1px solid var(--color-neutral-200);
+  --border-strong:      1px solid var(--color-neutral-300);
+  --border-focus:       2px solid var(--color-itesm-500);
+  --border-sidebar:     1px solid rgba(255,255,255,0.10);
+
+  /* ─────────────────────────────────────────
+     BORDER RADIUS
+     ───────────────────────────────────────── */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-full: 9999px;
+
+  /* ─────────────────────────────────────────
+     SHADOWS
+     ───────────────────────────────────────── */
+  --shadow-xs:  0 1px 2px rgba(0,0,0,0.06);
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.10);
+  --shadow-lg:  0 8px 24px rgba(0,0,0,0.12);
+  --shadow-xl:  0 16px 40px rgba(0,0,0,0.14);
+
+  /* ─────────────────────────────────────────
+     SPACING SCALE (4px base)
+     ───────────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ─────────────────────────────────────────
+     TYPOGRAPHY — FONT FAMILIES
+     ───────────────────────────────────────── */
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Menlo', monospace;
+
+  /* ─────────────────────────────────────────
+     TYPOGRAPHY — SIZE & LINE HEIGHT
+     ───────────────────────────────────────── */
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-lg:   18px;
+  --text-xl:   22px;
+  --text-2xl:  28px;
+  --text-3xl:  36px;
+  --text-4xl:  48px;
+
+  --leading-tight:  1.15;
+  --leading-snug:   1.3;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* ─────────────────────────────────────────
+     TYPOGRAPHY — WEIGHTS
+     ───────────────────────────────────────── */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+
+  /* ─────────────────────────────────────────
+     ANIMATION
+     ───────────────────────────────────────── */
+  --transition-fast:   150ms ease-out;
+  --transition-base:   250ms ease-out;
+  --transition-slow:   350ms ease-out;
+
+  /* ─────────────────────────────────────────
+     Z-INDEX SCALE
+     ───────────────────────────────────────── */
+  --z-base:    1;
+  --z-sticky:  10;
+  --z-sidebar: 40;
+  --z-overlay: 50;
+  --z-modal:   60;
+  --z-toast:   80;
+}
+
+/* ─────────────────────────────────────────
+   BASE SEMANTIC TYPE STYLES
+   ───────────────────────────────────────── */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg-primary);
+  background-color: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--fg-primary);
+  letter-spacing: -0.02em;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--fg-primary);
+  letter-spacing: -0.015em;
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--fg-primary);
+}
+
+h4, .h4 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+  color: var(--fg-primary);
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+  color: var(--fg-secondary);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
+  color: var(--fg-primary);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--fg-muted);
+}
+
+.overline {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+code, .code, pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+}
