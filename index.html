@@ -2761,32 +2761,11 @@
       <h2 class="section-title">Dashboard KPI — Tasks completadas y horas trabajadas</h2>
       <div class="section-divider"></div>
 
-      <!-- ── MOBILE: prompt para abrir en pestaña ─────────────────────── -->
-      <div class="kpi-mobile-prompt">
-        <p>El dashboard interactivo está optimizado para pantalla completa.<br>Ábrelo en tu navegador para una mejor experiencia.</p>
-        <a class="kpi-mobile-open-btn" href="http://163.192.146.178/" target="_blank">
+      <div style="display:flex;justify-content:center;padding:2.5rem 0;">
+        <a href="http://163.192.146.178/" target="_blank" style="display:inline-flex;align-items:center;gap:0.75rem;background:var(--navy-deep);color:#fff;font-size:1rem;font-weight:800;letter-spacing:-0.01em;padding:1rem 2rem;border-radius:14px;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          <svg width="20" height="20" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="18" fill="#fff" fill-opacity="0.1"/><line x1="23" y1="18" x2="23" y2="62" stroke="white" stroke-width="4" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="18" stroke="white" stroke-width="4" stroke-linecap="round"/><line x1="23" y1="40" x2="55" y2="62" stroke="white" stroke-width="4" stroke-linecap="round"/><circle cx="23" cy="40" r="7" fill="white"/><circle cx="23" cy="40" r="3.5" fill="#003865"/></svg>
           Abrir Dashboard Kairo ↗
         </a>
-      </div>
-
-      <!-- ── IFRAME: app en vivo ──────────────────────────────────────── -->
-      <div class="kpi-live-wrap" id="kpi-live-wrap">
-        <div class="kpi-live-bar">
-          <span class="kpi-live-dot"></span>
-          <span class="kpi-live-url">http://163.192.146.178/</span>
-          <a class="kpi-live-btn" href="http://163.192.146.178/" target="_blank">Abrir en pestaña ↗</a>
-        </div>
-        <iframe
-          id="kpi-iframe"
-          src="http://163.192.146.178/"
-          title="Kairo Dashboard — en vivo"
-          allowfullscreen
-        ></iframe>
-        <div class="kpi-live-note" id="kpi-iframe-note">
-          Si el dashboard no carga, inicia sesión primero en
-          <a href="http://163.192.146.178/" target="_blank">http://163.192.146.178/</a>
-          y recarga esta sección. Si no hay conexión, usa el fallback de abajo.
-        </div>
       </div>
 
     </div>
