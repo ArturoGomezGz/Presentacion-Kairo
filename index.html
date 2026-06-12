@@ -2915,9 +2915,115 @@
       <span class="section-num">06 — Análisis de KPIs</span>
       <h2 class="section-title">Análisis de KPIs: Completed Tasks y Worked Hours</h2>
       <div class="section-divider"></div>
-      <div class="placeholder-box">
-        <div class="placeholder-icon">🔍</div>
-        <p>Usando el dashboard, realizar un análisis comparativo del trabajo de todos los integrantes del equipo.<br>Describir insights encontrados en la forma de trabajo del equipo.</p>
+
+      <!-- Gráficas lado a lado -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+          <div style="padding:0.75rem 1.25rem;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Tasks completadas por developer / sprint</div>
+          <img src="graficas/tasks-por-dev.jpeg" alt="Tasks por desarrollador" style="width:100%;display:block;">
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+          <div style="padding:0.75rem 1.25rem;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-secondary);border-bottom:1px solid var(--border);">Horas trabajadas por developer / sprint</div>
+          <img src="graficas/horas-por-dev.jpeg" alt="Horas por desarrollador" style="width:100%;display:block;">
+        </div>
+      </div>
+
+      <!-- Tabla comparativa -->
+      <p class="llm-block-title" style="margin-bottom:0.75rem;">Resumen comparativo — Sprints 1 al 3</p>
+      <div style="overflow-x:auto;margin-bottom:1.5rem;">
+        <table style="width:100%;border-collapse:separate;border-spacing:0;font-size:0.8125rem;">
+          <thead>
+            <tr>
+              <th style="padding:0.65rem 1rem;text-align:left;background:var(--navy-deep);color:rgba(255,255,255,0.45);font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;border-radius:10px 0 0 0;">Integrante</th>
+              <th style="padding:0.65rem 1rem;text-align:right;background:var(--navy-deep);color:rgba(255,255,255,0.45);font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;">S1 h</th>
+              <th style="padding:0.65rem 1rem;text-align:right;background:var(--navy-deep);color:rgba(255,255,255,0.45);font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;">S2 h</th>
+              <th style="padding:0.65rem 1rem;text-align:right;background:var(--navy-deep);color:rgba(255,255,255,0.45);font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;">S3 h</th>
+              <th style="padding:0.65rem 1rem;text-align:right;background:var(--navy-deep);color:#60A5FA;font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;">Total h</th>
+              <th style="padding:0.65rem 1rem;text-align:right;background:var(--navy-deep);color:rgba(255,255,255,0.45);font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;">S1 tasks</th>
+              <th style="padding:0.65rem 1rem;text-align:right;background:var(--navy-deep);color:rgba(255,255,255,0.45);font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;">S2 tasks</th>
+              <th style="padding:0.65rem 1rem;text-align:right;background:var(--navy-deep);color:rgba(255,255,255,0.45);font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;">S3 tasks</th>
+              <th style="padding:0.65rem 1rem;text-align:right;background:var(--navy-deep);color:#34D399;font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;border-radius:0 10px 0 0;">Total tasks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);font-weight:700;color:var(--navy-deep);">Arturo Gomez</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">5.5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">23.5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">17.0</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;font-weight:700;color:#1D4ED8;font-variant-numeric:tabular-nums;">46.0 h</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">3</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">7</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;font-weight:700;color:#16A34A;">15</td>
+            </tr>
+            <tr>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);font-weight:700;color:var(--navy-deep);">Yael Garcia</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">4.0</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">23.0</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">17.5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;font-weight:700;color:#1D4ED8;font-variant-numeric:tabular-nums;">44.5 h</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">1</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">7</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;font-weight:700;color:#16A34A;">13</td>
+            </tr>
+            <tr>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);font-weight:700;color:var(--navy-deep);">José Emilio Inzunza</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">4.5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">23.5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">16.0</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;font-weight:700;color:#1D4ED8;font-variant-numeric:tabular-nums;">44.0 h</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">2</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">6</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">6</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;font-weight:700;color:#16A34A;">14</td>
+            </tr>
+            <tr>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);font-weight:700;color:var(--navy-deep);">Andrés Gallego</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">5.0</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">22.5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">16.5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;font-weight:700;color:#1D4ED8;font-variant-numeric:tabular-nums;">44.0 h</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">2</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">5</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;color:var(--text-secondary);">7</td>
+              <td style="padding:0.7rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-page);text-align:right;font-weight:700;color:#16A34A;">14</td>
+            </tr>
+            <tr>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);font-weight:700;color:var(--navy-deep);border-radius:0 0 0 10px;">Patricio Blanco</td>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">5.5</td>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">22.0</td>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums;">16.0</td>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);text-align:right;font-weight:700;color:#1D4ED8;font-variant-numeric:tabular-nums;">43.5 h</td>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);text-align:right;color:var(--text-secondary);">2</td>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);text-align:right;color:var(--text-secondary);">6</td>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);text-align:right;color:var(--text-secondary);">4</td>
+              <td style="padding:0.7rem 1rem;background:var(--bg-page);text-align:right;font-weight:700;color:#16A34A;border-radius:0 0 10px 0;">12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Insights -->
+      <p class="llm-block-title" style="margin-bottom:0.75rem;">Insights del equipo</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.125rem 1.5rem;border-left:3px solid #16A34A;">
+          <div style="font-size:0.75rem;font-weight:800;color:#16A34A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.4rem;">Carga balanceada</div>
+          <div style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.55;">Las horas totales por integrante van de <strong style="color:var(--navy-deep);">43.5 a 46h</strong> — una diferencia de solo 2.5h entre el más alto y el más bajo. El equipo distribuyó el trabajo de forma equitativa en todos los sprints.</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.125rem 1.5rem;border-left:3px solid #F59E0B;">
+          <div style="font-size:0.75rem;font-weight:800;color:#F59E0B;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.4rem;">Sprint 2 — Pico de velocidad</div>
+          <div style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.55;">El Sprint 2 concentró el <strong style="color:var(--navy-deep);">mayor volumen</strong> de trabajo: ~22.5–23.5h y 5–7 tasks por persona. Coincide con la implementación de las funcionalidades core del sistema.</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.125rem 1.5rem;border-left:3px solid #0EA5E9;">
+          <div style="font-size:0.75rem;font-weight:800;color:#0EA5E9;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.4rem;">Mejora en eficiencia S3</div>
+          <div style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.55;">En Sprint 3, Yael y Andrés alcanzaron <strong style="color:var(--navy-deep);">7 tasks</strong> con menos horas que en Sprint 2, evidenciando mayor familiaridad con la herramienta y el proceso.</div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.125rem 1.5rem;border-left:3px solid #7C3AED;">
+          <div style="font-size:0.75rem;font-weight:800;color:#7C3AED;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.4rem;">Tareas vs horas — no lineal</div>
+          <div style="font-size:0.8125rem;color:var(--text-secondary);line-height:1.55;">Arturo lideró en horas totales (<strong style="color:var(--navy-deep);">46h</strong>) pero Yael y Andrés empataron en tasks de Sprint 3 (7 c/u), sugiriendo que las tareas del equipo varían en complejidad entre miembros.</div>
+        </div>
       </div>
     </div>
   </section>
