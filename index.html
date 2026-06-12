@@ -989,6 +989,308 @@
     .scale-tbl .h-val { color: var(--oracle); font-weight: 600; }
     .scale-tbl .sv-val { color: #16A34A; font-weight: 700; }
 
+    /* ── OCI INFRA COSTS ─────────────────────────────────────────────── */
+    .oci-cost-section { margin-top: 2.5rem; }
+
+    .oci-cost-header {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
+    }
+
+    .oci-cost-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #C74634, #F59E0B);
+      color: #fff; padding: 0.2rem 0.65rem; border-radius: 20px;
+    }
+
+    .oci-stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--navy-deep); border-radius: 14px;
+      overflow: hidden; margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 768px) { .oci-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .oci-stat-cell {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .oci-stat-cell:last-child { border-right: none; }
+
+    .oci-stat-lbl {
+      font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.07em; color: rgba(255,255,255,0.35); margin-bottom: 0.4rem;
+    }
+
+    .oci-stat-val {
+      font-size: 1.625rem; font-weight: 900; letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 0.3rem;
+    }
+
+    .oci-stat-val.c-red    { color: #F87171; }
+    .oci-stat-val.c-yellow { color: #FCD34D; }
+    .oci-stat-val.c-green  { color: #34D399; }
+    .oci-stat-val.c-blue   { color: #60A5FA; }
+
+    .oci-stat-sub { font-size: 0.6875rem; color: rgba(255,255,255,0.3); line-height: 1.4; }
+
+    .oci-budget-bar-wrap {
+      background: var(--bg-page); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+    }
+
+    .oci-budget-bar-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.75rem;
+    }
+
+    .oci-budget-bar-title {
+      font-size: 0.8125rem; font-weight: 700; color: var(--navy-deep);
+    }
+
+    .oci-budget-bar-pct {
+      font-size: 0.75rem; font-weight: 700; color: #C74634;
+    }
+
+    .oci-budget-track {
+      height: 10px; background: var(--border);
+      border-radius: 99px; overflow: hidden; margin-bottom: 0.5rem;
+    }
+
+    .oci-budget-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(90deg, #C74634, #F59E0B);
+      width: 89.5%;
+    }
+
+    .oci-budget-labels {
+      display: flex; justify-content: space-between;
+      font-size: 0.6875rem; color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .oci-service-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 640px) { .oci-service-grid { grid-template-columns: 1fr; } }
+
+    .oci-service-card {
+      background: var(--bg-page); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.125rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+
+    .oci-service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+
+    .oci-service-card.compute::before  { background: linear-gradient(90deg, #C74634, #F59E0B); }
+    .oci-service-card.balancer::before { background: linear-gradient(90deg, #1D4ED8, #60A5FA); }
+
+    .oci-service-name {
+      font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 0.35rem;
+    }
+
+    .oci-service-val {
+      font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums; margin-bottom: 0.25rem;
+    }
+
+    .oci-service-card.compute  .oci-service-val { color: #C74634; }
+    .oci-service-card.balancer .oci-service-val { color: #1D4ED8; }
+
+    .oci-service-pct-bar {
+      height: 4px; border-radius: 99px; margin-top: 0.6rem; background: var(--border);
+    }
+    .oci-service-pct-fill {
+      height: 100%; border-radius: 99px;
+    }
+    .oci-service-card.compute  .oci-service-pct-fill { background: #C74634; width: 90%; }
+    .oci-service-card.balancer .oci-service-pct-fill { background: #1D4ED8; width: 10%; }
+
+    .oci-service-sub {
+      font-size: 0.6875rem; color: var(--text-secondary); margin-top: 0.3rem;
+    }
+
+    .oci-note {
+      font-size: 0.75rem; color: var(--text-secondary);
+      border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.25rem;
+    }
+
+    /* ── COSTO RECURSO HUMANO ───────────────────────────────────────── */
+    .rh-cost-section { margin-top: 2.5rem; }
+
+    .rh-cost-header {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
+    }
+
+    .rh-cost-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #1D4ED8, #7C3AED);
+      color: #fff; padding: 0.2rem 0.65rem; border-radius: 20px;
+    }
+
+    .rh-pending-badge {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; background: rgba(251,191,36,0.15);
+      color: #B45309; border: 1px solid rgba(251,191,36,0.4);
+      padding: 0.15rem 0.55rem; border-radius: 10px;
+    }
+
+    .rh-stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--navy-deep); border-radius: 14px;
+      overflow: hidden; margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) { .rh-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .rh-stat-cell {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .rh-stat-cell:last-child { border-right: none; }
+
+    .rh-stat-lbl {
+      font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.07em; color: rgba(255,255,255,0.35); margin-bottom: 0.4rem;
+    }
+
+    .rh-stat-val {
+      font-size: 1.625rem; font-weight: 900; letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 0.3rem;
+    }
+
+    .rh-stat-val.c-purple { color: #C084FC; }
+    .rh-stat-val.c-blue   { color: #60A5FA; }
+    .rh-stat-val.c-yellow { color: #FCD34D; }
+    .rh-stat-val.c-green  { color: #34D399; }
+
+    .rh-stat-sub { font-size: 0.6875rem; color: rgba(255,255,255,0.3); line-height: 1.4; }
+
+    .rh-note {
+      font-size: 0.75rem; color: var(--text-secondary);
+      background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.25);
+      border-radius: 10px; padding: 0.65rem 1rem; margin-top: 0.25rem;
+    }
+
+    /* ── RESUMEN TOTAL DE COSTOS ─────────────────────────────────────── */
+    .total-cost-section { margin-top: 2.5rem; }
+
+    .total-cost-header {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
+    }
+
+    .total-cost-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #16A34A, #0EA5E9);
+      color: #fff; padding: 0.2rem 0.65rem; border-radius: 20px;
+    }
+
+    .cost-type-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 640px) { .cost-type-grid { grid-template-columns: 1fr; } }
+
+    .cost-type-card {
+      background: var(--bg-page); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.25rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+
+    .cost-type-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+
+    .cost-type-card.onetime::before   { background: linear-gradient(90deg, #7C3AED, #C084FC); }
+    .cost-type-card.recurring::before { background: linear-gradient(90deg, #16A34A, #34D399); }
+
+    .cost-type-badge {
+      display: inline-flex; font-size: 0.625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0.15rem 0.5rem; border-radius: 10px; margin-bottom: 0.75rem;
+    }
+
+    .cost-type-card.onetime   .cost-type-badge { background: rgba(124,58,237,0.1); color: #7C3AED; }
+    .cost-type-card.recurring .cost-type-badge { background: rgba(22,163,74,0.1);  color: #16A34A; }
+
+    .cost-type-total {
+      font-size: 2rem; font-weight: 900; letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 0.2rem;
+    }
+
+    .cost-type-card.onetime   .cost-type-total { color: #7C3AED; }
+    .cost-type-card.recurring .cost-type-total { color: #16A34A; }
+
+    .cost-type-sub {
+      font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1rem;
+    }
+
+    .cost-type-breakdown { border-top: 1px solid var(--border); padding-top: 0.75rem; }
+
+    .cost-type-line {
+      display: flex; justify-content: space-between;
+      font-size: 0.8125rem; padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cost-type-line:last-child { border-bottom: none; }
+    .cost-type-line-lbl { color: var(--text-secondary); }
+    .cost-type-line-val { font-weight: 700; color: var(--navy-deep); font-variant-numeric: tabular-nums; }
+
+    .projection-wrap { overflow-x: auto; }
+
+    .projection-tbl {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      font-size: 0.8125rem; margin-bottom: 0.75rem;
+    }
+
+    .projection-tbl thead th {
+      padding: 0.65rem 1rem; text-align: right;
+      font-size: 0.625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      color: rgba(255,255,255,0.45); background: var(--navy-deep);
+      white-space: nowrap;
+    }
+
+    .projection-tbl thead th:first-child { text-align: left; border-radius: 10px 0 0 0; }
+    .projection-tbl thead th:last-child  { border-radius: 0 10px 0 0; }
+
+    .projection-tbl td {
+      padding: 0.75rem 1rem; text-align: right;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-page);
+      font-variant-numeric: tabular-nums; color: var(--text-secondary);
+    }
+
+    .projection-tbl td:first-child { text-align: left; font-weight: 700; color: var(--navy-deep); }
+    .projection-tbl tbody tr:last-child td { border-bottom: none; }
+    .projection-tbl tbody tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+    .projection-tbl tbody tr:last-child td:last-child  { border-radius: 0 0 10px 0; }
+
+    .projection-tbl .proj-oci  { color: #C74634; font-weight: 600; }
+    .projection-tbl .proj-ai   { color: #1D4ED8; font-weight: 600; }
+    .projection-tbl .proj-rh   { color: #7C3AED; font-weight: 600; }
+    .projection-tbl .proj-total { color: #16A34A; font-weight: 800; }
+
+    .proj-highlight { background: rgba(22,163,74,0.04) !important; }
+    .proj-highlight td { background: rgba(22,163,74,0.04) !important; }
+
+    .total-note {
+      font-size: 0.75rem; color: var(--text-secondary);
+      border-top: 1px solid var(--border); padding-top: 0.75rem;
+    }
+
     /* ── COSTO-BENEFICIO ─────────────────────────────────────────────── */
     #costo-beneficio { background: var(--bg-page); }
 
@@ -1651,10 +1953,234 @@
         </div>
       </div>
 
-      <!-- ── Pendiente: RH + OCI ───────────────────────────────────── -->
-      <div class="placeholder-box">
-        <div class="placeholder-icon">📊</div>
-        <p>Pendiente · Costo Recurso Humano ($25 dls × hora)<br>Costo de Infraestructura OCI (Febrero – Junio 10, 2026)<br>Detalle de costos · ¿Cuánto consume la aplicación en 24 horas? (Min / Max)</p>
+      <!-- ── Infraestructura OCI ───────────────────────────────────── -->
+      <div class="oci-cost-section">
+        <div class="oci-cost-header">
+          <span class="oci-cost-label">☁️ Oracle Cloud Infrastructure</span>
+          <span style="font-size:0.8125rem;color:var(--text-secondary);">Últimos 6 meses — datos reales OCI</span>
+        </div>
+
+        <!-- Métricas principales -->
+        <div class="oci-stats-grid">
+          <div class="oci-stat-cell">
+            <div class="oci-stat-lbl">Gasto total acumulado</div>
+            <div class="oci-stat-val c-red">$305</div>
+            <div class="oci-stat-sub">USD · últimos 6 meses</div>
+          </div>
+          <div class="oci-stat-cell">
+            <div class="oci-stat-lbl">Presupuesto OCI</div>
+            <div class="oci-stat-val c-yellow">$340</div>
+            <div class="oci-stat-sub">USD · expira Feb 12, 2027</div>
+          </div>
+          <div class="oci-stat-cell">
+            <div class="oci-stat-lbl">Costo por día (actual)</div>
+            <div class="oci-stat-val c-blue">$5.35</div>
+            <div class="oci-stat-sub">USD/día · Jun 2026</div>
+          </div>
+          <div class="oci-stat-cell">
+            <div class="oci-stat-lbl">Proyección mensual</div>
+            <div class="oci-stat-val c-green">$160</div>
+            <div class="oci-stat-sub">USD/mes · infraestructura actual</div>
+          </div>
+        </div>
+
+        <!-- Barra de presupuesto -->
+        <div class="oci-budget-bar-wrap">
+          <div class="oci-budget-bar-header">
+            <span class="oci-budget-bar-title">Consumo de presupuesto OCI</span>
+            <span class="oci-budget-bar-pct">89.5% consumido</span>
+          </div>
+          <div class="oci-budget-track">
+            <div class="oci-budget-fill"></div>
+          </div>
+          <div class="oci-budget-labels">
+            <span>$0</span>
+            <span>Consumido: $304.65 USD</span>
+            <span>Total: $340.29 USD</span>
+          </div>
+        </div>
+
+        <!-- Desglose por servicio (datos Jun 1-11, 2026) -->
+        <p class="llm-block-title" style="margin-bottom:0.75rem;">Desglose por servicio</p>
+        <div class="oci-service-grid">
+          <div class="oci-service-card compute">
+            <div class="oci-service-name">Compute (VM)</div>
+            <div class="oci-service-val">$50.20 USD</div>
+            <div class="oci-service-sub">~90% del costo total · Jun 1-11</div>
+            <div class="oci-service-pct-bar">
+              <div class="oci-service-pct-fill"></div>
+            </div>
+          </div>
+          <div class="oci-service-card balancer">
+            <div class="oci-service-name">Load Balancer</div>
+            <div class="oci-service-val">$5.56 USD</div>
+            <div class="oci-service-sub">~10% del costo total · Jun 1-11</div>
+            <div class="oci-service-pct-bar">
+              <div class="oci-service-pct-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="oci-note">
+          Block Storage, Object Storage, Database, Telemetry y Virtual Cloud Network: $0.00 USD —
+          servicios activos sin costo adicional dentro del tier actual.
+          Datos de desglose: Jun 1–11, 2026 ($55.75 USD total del período).
+        </p>
+      </div>
+
+      <!-- ── Costo Recurso Humano ───────────────────────────────────── -->
+      <!-- TODO: actualizar HORAS_HOMBRE cuando se registren todas las tareas -->
+      <div class="rh-cost-section">
+        <div class="rh-cost-header">
+          <span class="rh-cost-label">👥 Recurso Humano</span>
+          <span class="rh-pending-badge">⚠ Horas aproximadas — pendiente de ajuste</span>
+        </div>
+
+        <div class="rh-stats-grid">
+          <div class="rh-stat-cell">
+            <div class="rh-stat-lbl">Horas hombre totales</div>
+            <div class="rh-stat-val c-purple">~250</div>
+            <div class="rh-stat-sub">horas registradas + estimadas</div>
+          </div>
+          <div class="rh-stat-cell">
+            <div class="rh-stat-lbl">Tarifa</div>
+            <div class="rh-stat-val c-blue">$25</div>
+            <div class="rh-stat-sub">USD por hora · equipo de 5</div>
+          </div>
+          <div class="rh-stat-cell">
+            <div class="rh-stat-lbl">Costo de desarrollo</div>
+            <div class="rh-stat-val c-yellow">$6,250</div>
+            <div class="rh-stat-sub">USD · 250 h × $25/h</div>
+          </div>
+          <div class="rh-stat-cell">
+            <div class="rh-stat-lbl">Promedio por integrante</div>
+            <div class="rh-stat-val c-green">$1,250</div>
+            <div class="rh-stat-sub">USD · 50 h por persona</div>
+          </div>
+        </div>
+
+        <p class="rh-note">
+          ⚠ Dato aproximado — las horas hombre finales se actualizarán una vez que todos los
+          integrantes registren sus tareas en el sistema. Base de cálculo:
+          <strong>250 h × $25 USD/h = $6,250 USD</strong>.
+          El documento original asumía $30,000 MXN/mes por desarrollador a tiempo completo;
+          este cálculo refleja las horas reales de dedicación del equipo.
+        </p>
+      </div>
+
+      <!-- ── Resumen Total ───────────────────────────────────────────── -->
+      <div class="total-cost-section">
+        <div class="total-cost-header">
+          <span class="total-cost-label">📊 Resumen Total de Costos</span>
+        </div>
+
+        <!-- Costo único vs recurrente -->
+        <div class="cost-type-grid">
+          <div class="cost-type-card onetime">
+            <span class="cost-type-badge">Costo único · Desarrollo</span>
+            <div class="cost-type-total">$6,250 USD</div>
+            <div class="cost-type-sub">Horas hombre reales del equipo</div>
+            <div class="cost-type-breakdown">
+              <div class="cost-type-line">
+                <span class="cost-type-line-lbl">Recurso humano</span>
+                <span class="cost-type-line-val">250 h × $25/h</span>
+              </div>
+              <div class="cost-type-line">
+                <span class="cost-type-line-lbl">Promedio por integrante</span>
+                <span class="cost-type-line-val">50 h · $1,250 USD</span>
+              </div>
+              <div class="cost-type-line">
+                <span class="cost-type-line-lbl">Infraestructura (créditos OCI)</span>
+                <span class="cost-type-line-val">$305 USD consumido</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cost-type-card recurring">
+            <span class="cost-type-badge">Costo mensual · Operación</span>
+            <div class="cost-type-total">$162 USD</div>
+            <div class="cost-type-sub">Costo mensual en producción</div>
+            <div class="cost-type-breakdown">
+              <div class="cost-type-line">
+                <span class="cost-type-line-lbl">OCI (Compute + Load Balancer)</span>
+                <span class="cost-type-line-val">$160.40 USD</span>
+              </div>
+              <div class="cost-type-line">
+                <span class="cost-type-line-lbl">IA — Claude Haiku 4.5</span>
+                <span class="cost-type-line-val">$1.85 USD</span>
+              </div>
+              <div class="cost-type-line">
+                <span class="cost-type-line-lbl">Escenario base</span>
+                <span class="cost-type-line-val">~100 msg/día</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyección a futuro -->
+        <p class="llm-block-title" style="margin-bottom:0.75rem;">Proyección de costo operacional</p>
+        <div class="projection-wrap">
+          <table class="projection-tbl">
+            <thead>
+              <tr>
+                <th>Horizonte</th>
+                <th>OCI (USD)</th>
+                <th>IA Claude (USD)</th>
+                <th>Subtotal operación</th>
+                <th>+ Desarrollo (ref.)</th>
+                <th>Total acumulado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1 mes</td>
+                <td class="proj-oci">$160</td>
+                <td class="proj-ai">$1.85</td>
+                <td>$162</td>
+                <td class="proj-rh">+ $6,250*</td>
+                <td class="proj-total">$6,412</td>
+              </tr>
+              <tr>
+                <td>3 meses</td>
+                <td class="proj-oci">$481</td>
+                <td class="proj-ai">$5.55</td>
+                <td>$487</td>
+                <td class="proj-rh">+ $6,250*</td>
+                <td class="proj-total">$6,737</td>
+              </tr>
+              <tr>
+                <td>6 meses</td>
+                <td class="proj-oci">$962</td>
+                <td class="proj-ai">$11.10</td>
+                <td>$973</td>
+                <td class="proj-rh">+ $6,250*</td>
+                <td class="proj-total">$7,223</td>
+              </tr>
+              <tr class="proj-highlight">
+                <td>12 meses</td>
+                <td class="proj-oci">$1,925</td>
+                <td class="proj-ai">$22.20</td>
+                <td>$1,947</td>
+                <td class="proj-rh">+ $6,250*</td>
+                <td class="proj-total">$8,197</td>
+              </tr>
+              <tr>
+                <td>24 meses</td>
+                <td class="proj-oci">$3,850</td>
+                <td class="proj-ai">$44.40</td>
+                <td>$3,894</td>
+                <td class="proj-rh">+ $6,250*</td>
+                <td class="proj-total">$10,144</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="total-note">
+          Todos los valores en USD. IA calculada a escala de ~100 msg/día (escenario conservador).
+          * Costo de desarrollo (RH) es único — se incluye en la fila para referencia del costo total del proyecto.
+          Las horas hombre de desarrollo (~250 h) son aproximadas y se actualizarán cuando se completen todos los registros.
+        </p>
       </div>
     </div>
   </section>
