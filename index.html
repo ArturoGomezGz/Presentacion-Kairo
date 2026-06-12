@@ -829,6 +829,129 @@
     /* ── BENEFICIO ECONOMICO ─────────────────────────────────────────── */
     #beneficio { background: var(--bg-page); }
 
+    .beneficio-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #16A34A, #0EA5E9);
+      color: #fff; padding: 0.2rem 0.65rem; border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+
+    .beneficio-supuestos {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;
+    }
+
+    .beneficio-supuestos-title {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--text-secondary); margin-bottom: 0.75rem;
+    }
+
+    .supuestos-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+    }
+
+    @media (max-width: 640px) { .supuestos-grid { grid-template-columns: 1fr 1fr; } }
+
+    .supuesto-item {
+      background: var(--bg-page); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.75rem 1rem;
+    }
+
+    .supuesto-lbl {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 0.3rem;
+    }
+
+    .supuesto-val {
+      font-size: 1rem; font-weight: 800; color: var(--navy-deep);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ahorro-flow {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--navy-deep); border-radius: 14px;
+      overflow: hidden; margin-bottom: 1.5rem; position: relative;
+    }
+
+    @media (max-width: 768px) { .ahorro-flow { grid-template-columns: repeat(2, 1fr); } }
+
+    .ahorro-step {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+    }
+
+    .ahorro-step:last-child { border-right: none; }
+
+    .ahorro-step-num {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: rgba(255,255,255,0.3); margin-bottom: 0.3rem;
+    }
+
+    .ahorro-step-lbl {
+      font-size: 0.6875rem; color: rgba(255,255,255,0.45); margin-bottom: 0.5rem; line-height: 1.4;
+    }
+
+    .ahorro-step-val {
+      font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums; line-height: 1;
+    }
+
+    .ahorro-step-val.c-white  { color: #fff; }
+    .ahorro-step-val.c-yellow { color: #FCD34D; }
+    .ahorro-step-val.c-green  { color: #34D399; }
+    .ahorro-step-val.c-emerald{ color: #6EE7B7; }
+
+    .ahorro-step-sub { font-size: 0.6875rem; color: rgba(255,255,255,0.3); margin-top: 0.25rem; }
+
+    .productividad-block {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.25rem 1.5rem; margin-top: 1.5rem;
+    }
+
+    .productividad-title {
+      font-size: 0.8125rem; font-weight: 800; color: var(--navy-deep);
+      margin-bottom: 1rem;
+    }
+
+    .sprint-efficiency-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;
+    }
+
+    @media (max-width: 640px) { .sprint-efficiency-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .sprint-eff-card {
+      background: var(--bg-page); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.75rem 1rem; text-align: center;
+    }
+
+    .sprint-eff-name {
+      font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 0.35rem;
+    }
+
+    .sprint-eff-val {
+      font-size: 1.25rem; font-weight: 900; font-variant-numeric: tabular-nums;
+      margin-bottom: 0.2rem;
+    }
+
+    .sprint-eff-val.baseline { color: var(--text-secondary); }
+    .sprint-eff-val.good     { color: #16A34A; }
+    .sprint-eff-val.great    { color: #0EA5E9; }
+
+    .sprint-eff-sub { font-size: 0.625rem; color: var(--text-secondary); }
+
+    .mejora-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.3);
+      color: #16A34A; font-size: 0.75rem; font-weight: 700;
+      padding: 0.3rem 0.75rem; border-radius: 20px; margin-top: 0.75rem;
+    }
+
+    /* ── COSTO-BENEFICIO ─────────────────────────────────────────────── */
+
     /* ── COSTOS ──────────────────────────────────────────────────────── */
     #costos { background: var(--bg-card); }
 
@@ -1292,7 +1415,131 @@
     }
 
     /* ── COSTO-BENEFICIO ─────────────────────────────────────────────── */
-    #costo-beneficio { background: var(--bg-page); }
+    #costo-beneficio { background: var(--bg-card); }
+
+    .cb-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #7C3AED, #1D4ED8);
+      color: #fff; padding: 0.2rem 0.65rem; border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+
+    .cb-kpi-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--navy-deep); border-radius: 14px;
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) { .cb-kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .cb-kpi-cell {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .cb-kpi-cell:last-child { border-right: none; }
+
+    .cb-kpi-lbl {
+      font-size: 0.6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.07em; color: rgba(255,255,255,0.35); margin-bottom: 0.4rem;
+    }
+
+    .cb-kpi-val {
+      font-size: 1.875rem; font-weight: 900; letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 0.25rem;
+    }
+
+    .cb-kpi-val.c-green  { color: #34D399; }
+    .cb-kpi-val.c-blue   { color: #60A5FA; }
+    .cb-kpi-val.c-yellow { color: #FCD34D; }
+    .cb-kpi-val.c-purple { color: #C084FC; }
+
+    .cb-kpi-sub { font-size: 0.6875rem; color: rgba(255,255,255,0.3); line-height: 1.4; }
+
+    .cb-tables-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) { .cb-tables-grid { grid-template-columns: 1fr; } }
+
+    .cb-table-card {
+      background: var(--bg-page); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+
+    .cb-table-header {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .cb-table-header.costos  { background: rgba(220,38,38,0.08); color: #DC2626; }
+    .cb-table-header.beneficios { background: rgba(22,163,74,0.08); color: #16A34A; }
+
+    .cb-tbl {
+      width: 100%; border-collapse: collapse; font-size: 0.8125rem;
+    }
+
+    .cb-tbl td {
+      padding: 0.6rem 1.25rem; border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cb-tbl tr:last-child td { border-bottom: none; font-weight: 800; }
+    .cb-tbl td:last-child { text-align: right; font-weight: 600; color: var(--navy-deep); }
+    .cb-tbl td:first-child { color: var(--text-secondary); }
+    .cb-tbl tr:last-child td { background: var(--bg-card); }
+
+    .cb-conclusion {
+      background: linear-gradient(135deg, rgba(22,163,74,0.08), rgba(14,165,233,0.08));
+      border: 1px solid rgba(22,163,74,0.25);
+      border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;
+    }
+
+    .cb-conclusion-title {
+      font-size: 0.8125rem; font-weight: 800; color: var(--navy-deep); margin-bottom: 0.5rem;
+    }
+
+    .cb-conclusion-text {
+      font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6;
+    }
+
+    .cb-conclusion-text strong { color: var(--navy-deep); }
+
+    .precio-venta-card {
+      background: var(--navy-deep); border-radius: 14px;
+      padding: 1.5rem; margin-bottom: 1rem;
+    }
+
+    .precio-venta-label {
+      font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: rgba(255,255,255,0.35); margin-bottom: 0.5rem;
+    }
+
+    .precio-venta-amount {
+      font-size: 3rem; font-weight: 900; letter-spacing: -0.04em;
+      color: #FCD34D; font-variant-numeric: tabular-nums; line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .precio-venta-sub {
+      font-size: 0.8125rem; color: rgba(255,255,255,0.45); margin-bottom: 1.25rem;
+    }
+
+    .precio-justif-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+
+    .precio-justif-list li {
+      font-size: 0.8125rem; color: rgba(255,255,255,0.6);
+      display: flex; gap: 0.5rem; align-items: flex-start;
+    }
+
+    .precio-justif-list li::before {
+      content: '→'; color: #FCD34D; flex-shrink: 0; font-weight: 700;
+    }
 
     /* ── KPI LIVE IFRAME ─────────────────────────────────────────────── */
     .kpi-live-wrap {
@@ -1811,9 +2058,96 @@
       <span class="section-num">02 — Beneficio Económico</span>
       <h2 class="section-title">Beneficio Económico</h2>
       <div class="section-divider"></div>
-      <div class="placeholder-box">
-        <div class="placeholder-icon">💰</div>
-        <p>Justificar cuánto ($) se va a ahorrar con la aplicación.<br>Justificar cómo se mejoró la productividad del equipo de desarrollo (meta: 20%).</p>
+
+      <!-- Supuestos -->
+      <span class="beneficio-label">📐 Supuestos de evaluación</span>
+      <div class="beneficio-supuestos">
+        <div class="beneficio-supuestos-title">Escenario base — equipo de 5 desarrolladores</div>
+        <div class="supuestos-grid">
+          <div class="supuesto-item">
+            <div class="supuesto-lbl">Integrantes</div>
+            <div class="supuesto-val">5 devs</div>
+          </div>
+          <div class="supuesto-item">
+            <div class="supuesto-lbl">Horas/semana por dev</div>
+            <div class="supuesto-val">40 h</div>
+          </div>
+          <div class="supuesto-item">
+            <div class="supuesto-lbl">Total horas/semana</div>
+            <div class="supuesto-val">200 h</div>
+          </div>
+          <div class="supuesto-item">
+            <div class="supuesto-lbl">Tiempo en gestión</div>
+            <div class="supuesto-val">20%</div>
+          </div>
+          <div class="supuesto-item">
+            <div class="supuesto-lbl">Reducción por sistema</div>
+            <div class="supuesto-val">20%</div>
+          </div>
+          <div class="supuesto-item">
+            <div class="supuesto-lbl">Tarifa hora</div>
+            <div class="supuesto-val">$25 USD</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flujo de cálculo -->
+      <span class="beneficio-label">💵 Cálculo del ahorro</span>
+      <div class="ahorro-flow" style="margin-top:0.75rem;">
+        <div class="ahorro-step">
+          <div class="ahorro-step-num">Paso 1</div>
+          <div class="ahorro-step-lbl">Horas en gestión por semana</div>
+          <div class="ahorro-step-val c-white">40 h</div>
+          <div class="ahorro-step-sub">200 h × 20%</div>
+        </div>
+        <div class="ahorro-step">
+          <div class="ahorro-step-num">Paso 2</div>
+          <div class="ahorro-step-lbl">Horas recuperadas / semana</div>
+          <div class="ahorro-step-val c-yellow">8 h</div>
+          <div class="ahorro-step-sub">40 h × 20% reducción</div>
+        </div>
+        <div class="ahorro-step">
+          <div class="ahorro-step-num">Paso 3</div>
+          <div class="ahorro-step-lbl">Ahorro semanal</div>
+          <div class="ahorro-step-val c-green">$200</div>
+          <div class="ahorro-step-sub">8 h × $25 USD</div>
+        </div>
+        <div class="ahorro-step">
+          <div class="ahorro-step-num">Resultado</div>
+          <div class="ahorro-step-lbl">Ahorro anual estimado</div>
+          <div class="ahorro-step-val c-emerald">$10,400</div>
+          <div class="ahorro-step-sub">$200 × 52 semanas</div>
+        </div>
+      </div>
+
+      <!-- Evidencia de mejora de productividad por sprint -->
+      <div class="productividad-block">
+        <div class="productividad-title">Evidencia de mejora de productividad — SP por hora trabajada</div>
+        <div class="sprint-efficiency-grid">
+          <div class="sprint-eff-card">
+            <div class="sprint-eff-name">Sprint 1 · Baseline</div>
+            <div class="sprint-eff-val baseline">0.65 SP/h</div>
+            <div class="sprint-eff-sub">~17 SP / ~26 h</div>
+          </div>
+          <div class="sprint-eff-card">
+            <div class="sprint-eff-name">Sprint 2</div>
+            <div class="sprint-eff-val good">0.69 SP/h</div>
+            <div class="sprint-eff-sub">~79 SP / ~115 h</div>
+          </div>
+          <div class="sprint-eff-card">
+            <div class="sprint-eff-name">Sprint 3</div>
+            <div class="sprint-eff-val great">1.05 SP/h</div>
+            <div class="sprint-eff-sub">~86 SP / ~82 h</div>
+          </div>
+          <div class="sprint-eff-card">
+            <div class="sprint-eff-name">Sprint 4</div>
+            <div class="sprint-eff-val great">1.04 SP/h</div>
+            <div class="sprint-eff-sub">~27 SP / ~26 h</div>
+          </div>
+        </div>
+        <div>
+          <span class="mejora-badge">✓ Mejora real: +60% en SP/hora — supera la meta del 20%</span>
+        </div>
       </div>
     </div>
   </section>
@@ -2191,9 +2525,79 @@
       <span class="section-num">04 — Relación Costo-Beneficio</span>
       <h2 class="section-title">Relación Costo-Beneficio</h2>
       <div class="section-divider"></div>
-      <div class="placeholder-box">
-        <div class="placeholder-icon">⚖️</div>
-        <p>Análisis costo-beneficio con justificación.<br>¿En cuánto venderías tu aplicación (USD)? Justifica.</p>
+
+      <!-- KPIs principales -->
+      <span class="cb-label">⚖️ Métricas clave · Año 1</span>
+      <div class="cb-kpi-grid" style="margin-top:0.75rem;">
+        <div class="cb-kpi-cell">
+          <div class="cb-kpi-lbl">Relación B/C</div>
+          <div class="cb-kpi-val c-green">1.22</div>
+          <div class="cb-kpi-sub">$1.22 generado por cada $1 invertido</div>
+        </div>
+        <div class="cb-kpi-cell">
+          <div class="cb-kpi-lbl">ROI primer año</div>
+          <div class="cb-kpi-val c-blue">22%</div>
+          <div class="cb-kpi-sub">retorno sobre inversión total</div>
+        </div>
+        <div class="cb-kpi-cell">
+          <div class="cb-kpi-lbl">Recuperación inversión</div>
+          <div class="cb-kpi-val c-yellow">7.6 meses</div>
+          <div class="cb-kpi-sub">dentro del rango esperado 7–9 meses</div>
+        </div>
+        <div class="cb-kpi-cell">
+          <div class="cb-kpi-lbl">Ahorro neto año 1</div>
+          <div class="cb-kpi-val c-purple">$1,901</div>
+          <div class="cb-kpi-sub">$10,400 − $8,499 beneficio neto</div>
+        </div>
+      </div>
+
+      <!-- Tablas costos vs beneficios -->
+      <div class="cb-tables-grid">
+        <div class="cb-table-card">
+          <div class="cb-table-header costos">Costos totales — Año 1</div>
+          <table class="cb-tbl">
+            <tbody>
+              <tr><td>Inversión inicial (dev + OCI)</td><td>$6,555</td></tr>
+              <tr><td>Operación anual ($162 × 12)</td><td>$1,944</td></tr>
+              <tr><td><strong>Total año 1</strong></td><td><strong>$8,499 USD</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cb-table-card">
+          <div class="cb-table-header beneficios">Beneficios totales — Año 1</div>
+          <table class="cb-tbl">
+            <tbody>
+              <tr><td>Ahorro semanal en gestión</td><td>$200/sem</td></tr>
+              <tr><td>Semanas al año</td><td>× 52</td></tr>
+              <tr><td><strong>Ahorro anual estimado</strong></td><td><strong>$10,400 USD</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Conclusión -->
+      <div class="cb-conclusion">
+        <div class="cb-conclusion-title">Conclusión del análisis</div>
+        <div class="cb-conclusion-text">
+          El sistema es económicamente viable: la inversión inicial se recupera en <strong>menos de 8 meses</strong>.
+          Con un B/C de <strong>1.22</strong> y ROI del <strong>22%</strong>, el proyecto genera valor desde el primer año.
+          A partir del año 2 los beneficios crecen significativamente ya que el costo de desarrollo es único —
+          el costo operacional anual es de solo <strong>$1,944 USD</strong> frente a un ahorro de <strong>$10,400 USD</strong>.
+        </div>
+      </div>
+
+      <!-- Precio de venta -->
+      <span class="cb-label">💲 Precio de venta propuesto</span>
+      <div class="precio-venta-card" style="margin-top:0.75rem;">
+        <div class="precio-venta-label">Licencia anual empresarial</div>
+        <div class="precio-venta-amount">$2,500 USD/año</div>
+        <div class="precio-venta-sub">Por empresa · equipos de hasta 10 desarrolladores</div>
+        <ul class="precio-justif-list">
+          <li>El cliente ahorra $10,400 USD/año — la licencia representa solo el <strong style="color:#FCD34D;">24% del ahorro generado</strong>, ROI de 4× para el cliente</li>
+          <li>Comparable con herramientas del mercado: Jira (~$960/año/10 users), Linear (~$960/año/10 users)</li>
+          <li>Incluye infraestructura OCI, IA integrada (Claude Haiku) y soporte — diferenciador clave vs. competidores</li>
+          <li>Break-even del desarrollo con <strong style="color:#FCD34D;">3 clientes</strong> en el primer año</li>
+        </ul>
       </div>
     </div>
   </section>
