@@ -2119,10 +2119,11 @@
 <body>
 
   <!-- QR Popup -->
-  <div id="qr-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);" onclick="closeQR()">
-    <div onclick="event.stopPropagation()" style="position:absolute;top:64px;left:16px;background:#fff;border-radius:16px;padding:1.25rem;box-shadow:0 20px 60px rgba(0,0,0,0.35);display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
+  <div id="qr-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;" onclick="closeQR()">
+    <div onclick="event.stopPropagation()" style="background:#fff;border-radius:24px;padding:2.5rem;box-shadow:0 32px 80px rgba(0,0,0,0.45);display:flex;flex-direction:column;align-items:center;gap:1.25rem;">
+      <div style="font-size:1rem;font-weight:800;color:#003865;letter-spacing:-0.01em;">Escanea para abrir la presentación</div>
       <div id="qr-canvas"></div>
-      <div style="font-size:0.7rem;color:#64748b;font-weight:600;letter-spacing:0.04em;text-align:center;">project-mvaho.vercel.app</div>
+      <div style="font-size:0.8125rem;color:#64748b;font-weight:600;letter-spacing:0.04em;">project-mvaho.vercel.app</div>
     </div>
   </div>
 
@@ -3373,15 +3374,16 @@
       if (!qrGenerated) {
         new QRCode(document.getElementById('qr-canvas'), {
           text: 'https://project-mvaho.vercel.app/',
-          width: 180,
-          height: 180,
+          width: 280,
+          height: 280,
           colorDark: '#003865',
           colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.M
         });
         qrGenerated = true;
       }
-      document.getElementById('qr-overlay').style.display = 'block';
+      const overlay = document.getElementById('qr-overlay');
+      overlay.style.display = 'flex';
     }
 
     function closeQR() {
