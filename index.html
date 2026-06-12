@@ -1904,11 +1904,215 @@
       color: rgba(255,255,255,0.3);
     }
 
-    /* ── RESPONSIVE NAV ──────────────────────────────────────────────── */
+    /* ── HAMBURGER BUTTON ────────────────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE NAV PANEL ────────────────────────────────────────────── */
+    .mobile-nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .mobile-nav-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .mobile-nav-panel {
+      position: fixed;
+      top: 56px;
+      right: 0;
+      bottom: 0;
+      width: 280px;
+      max-width: 85vw;
+      z-index: 95;
+      background: #001C33;
+      border-left: 1px solid rgba(255,255,255,0.08);
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+    }
+    .mobile-nav-panel.open { transform: translateX(0); }
+
+    .mobile-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mobile-nav-title {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .mobile-nav-close {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.45);
+      font-size: 1.125rem;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      line-height: 1;
+      border-radius: 4px;
+    }
+    .mobile-nav-close:hover { background: rgba(255,255,255,0.07); color: #fff; }
+
+    .mobile-nav-links { list-style: none; padding: 0.5rem 0 2rem; }
+
+    .mobile-nav-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      text-decoration: none;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.12s, color 0.12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-nav-links a:active { background: rgba(255,255,255,0.08); color: #fff; }
+
+    .mobile-nav-num {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--oracle);
+      font-family: 'JetBrains Mono', monospace;
+      min-width: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── MOBILE KPI PROMPT ───────────────────────────────────────────── */
+    .kpi-mobile-prompt {
+      display: none;
+      background: var(--navy-deep);
+      border: 1px solid rgba(96,165,250,0.2);
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .kpi-mobile-prompt p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .kpi-mobile-open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1D4ED8;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      font-family: 'Manrope', sans-serif;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* ── DIAGRAMA MÓVIL — "VER COMPLETO" ─────────────────────────────── */
+    .diagrama-mobile-link {
+      display: none;
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+    .diagrama-mobile-link a {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--navy-mid);
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy-mid);
+      padding-bottom: 1px;
+    }
+
+    /* ── RESPONSIVE BASE ─────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding: 3.5rem 1.5rem; }
+    }
+
     @media (max-width: 640px) {
+      /* Nav */
       .nav-links { display: none; }
-      nav { padding: 0 1.25rem; }
+      .nav-badge { display: none; }
+      .nav-hamburger { display: flex; }
+      nav { padding: 0 1rem; gap: 0.5rem; }
+
+      /* Sections */
+      section { padding: 2.75rem 1rem; }
+      .section-divider { margin-bottom: 1.75rem; }
+
+      /* Hero / Portada */
+      #portada { padding: 5rem 1rem 2.5rem; }
+      .hero-sub { font-size: 0.875rem; margin-bottom: 2rem; }
+      .portada-team { gap: 0.75rem; }
+      .portada-member { gap: 0.35rem; }
+      .portada-photo { width: 88px; height: 88px; }
+      .portada-name { font-size: 0.75rem; }
+      .portada-role { font-size: 0.55rem; }
+
+      /* Diagrama relacional — fill width, scrollable */
+      .diagrama-wrap { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+      .diagrama-img { max-width: 100%; width: 100%; }
+      .diagrama-mobile-link { display: block; }
+
+      /* CICD legacy diagram */
       .cicd2 { min-width: 660px; gap: 0.4rem 0.5rem; }
+
+      /* OCI legend — hide separators */
+      .oci-legend-sep { display: none; }
+
+      /* Arquitectura iframe height on mobile */
+      #arquitectura iframe { height: 420px !important; }
+
+      /* KPI — show mobile prompt, hide live iframe */
+      .kpi-mobile-prompt { display: block; }
+      .kpi-live-wrap { display: none; }
+
+      /* Footer */
+      footer { padding: 2rem 1rem; }
+    }
+
+    @media (max-width: 390px) {
+      .portada-photo { width: 74px; height: 74px; }
+      .portada-team { gap: 0.5rem; }
     }
   </style>
 </head>
@@ -1936,8 +2140,35 @@
       <li><a href="#video">Video</a></li>
       <li><a href="#lessons">Lessons</a></li>
     </ul>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Abrir menú de navegación">
+      <span></span><span></span><span></span>
+    </button>
     <span class="nav-badge">Equipo 33 · Final</span>
   </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+  <!-- Mobile Nav Panel -->
+  <div class="mobile-nav-panel" id="mobileNavPanel">
+    <div class="mobile-nav-header">
+      <span class="mobile-nav-title">Secciones</span>
+      <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#portada" onclick="closeMobileNav()"><span class="mobile-nav-num">00</span>Portada</a></li>
+      <li><a href="#resumen" onclick="closeMobileNav()"><span class="mobile-nav-num">01</span>Resumen Ejecutivo</a></li>
+      <li><a href="#beneficio" onclick="closeMobileNav()"><span class="mobile-nav-num">02</span>Beneficio Económico</a></li>
+      <li><a href="#costos" onclick="closeMobileNav()"><span class="mobile-nav-num">03</span>Resumen de Costos</a></li>
+      <li><a href="#costo-beneficio" onclick="closeMobileNav()"><span class="mobile-nav-num">04</span>Costo-Beneficio</a></li>
+      <li><a href="#kpis" onclick="closeMobileNav()"><span class="mobile-nav-num">05</span>Dashboard KPI</a></li>
+      <li><a href="#analisis-kpis" onclick="closeMobileNav()"><span class="mobile-nav-num">06</span>Análisis KPIs</a></li>
+      <li><a href="#modelo" onclick="closeMobileNav()"><span class="mobile-nav-num">07</span>Modelo Relacional</a></li>
+      <li><a href="#arquitectura" onclick="closeMobileNav()"><span class="mobile-nav-num">08</span>Arquitectura</a></li>
+      <li><a href="#oci-checklist" onclick="closeMobileNav()"><span class="mobile-nav-num">09</span>OCI Deployment</a></li>
+      <li><a href="#video" onclick="closeMobileNav()"><span class="mobile-nav-num">10</span>Video DEMO</a></li>
+      <li><a href="#lessons" onclick="closeMobileNav()"><span class="mobile-nav-num">11</span>Lessons Learned</a></li>
+    </ul>
+  </div>
 
   <!-- 0. PORTADA -->
   <section id="portada">
@@ -2609,6 +2840,14 @@
       <h2 class="section-title">Dashboard KPI — Tasks completadas y horas trabajadas</h2>
       <div class="section-divider"></div>
 
+      <!-- ── MOBILE: prompt para abrir en pestaña ─────────────────────── -->
+      <div class="kpi-mobile-prompt">
+        <p>El dashboard interactivo está optimizado para pantalla completa.<br>Ábrelo en tu navegador para una mejor experiencia.</p>
+        <a class="kpi-mobile-open-btn" href="http://163.192.146.178/" target="_blank">
+          Abrir Dashboard Kairo ↗
+        </a>
+      </div>
+
       <!-- ── IFRAME: app en vivo ──────────────────────────────────────── -->
       <div class="kpi-live-wrap" id="kpi-live-wrap">
         <div class="kpi-live-bar">
@@ -2683,6 +2922,9 @@
       <div class="diagrama-wrap">
         <img src="modelo_relacional/modelo_relacional.jpeg" alt="Modelo Relacional — Oracle Autonomous Database" class="diagrama-img" />
       </div>
+      <div class="diagrama-mobile-link">
+        <a href="modelo_relacional/modelo_relacional.jpeg" target="_blank">Ver imagen completa ↗</a>
+      </div>
     </div>
   </section>
 
@@ -2700,7 +2942,6 @@
           width="100%"
           height="820px"
           style="border: 1px solid var(--border); border-radius: 12px; display: block;"
-          scrolling="no"
         ></iframe>
       </div>
     </div>
@@ -2967,6 +3208,44 @@
   </footer>
 
   <script>
+    /* ── Mobile Navigation ── */
+    function toggleMobileNav() {
+      const panel = document.getElementById('mobileNavPanel');
+      const overlay = document.getElementById('mobileNavOverlay');
+      const btn = document.getElementById('navHamburger');
+      if (panel.classList.contains('open')) {
+        closeMobileNav();
+      } else {
+        panel.classList.add('open');
+        overlay.classList.add('open');
+        btn.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeMobileNav() {
+      const panel = document.getElementById('mobileNavPanel');
+      const overlay = document.getElementById('mobileNavOverlay');
+      const btn = document.getElementById('navHamburger');
+      panel.classList.remove('open');
+      overlay.classList.remove('open');
+      btn.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* Close mobile nav on Escape key */
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMobileNav();
+    });
+
+    /* Auto-show KPI fallback charts on mobile */
+    if (window.matchMedia('(max-width: 640px)').matches) {
+      document.addEventListener('DOMContentLoaded', function() {
+        const fb = document.getElementById('kpi-fallback');
+        if (fb) fb.style.display = 'block';
+      });
+    }
+
     const COLORS = {
       'Arturo Gomez':            { bg: '#1D4ED8CC', border: '#1E40AF' },
       'José Emilio Inzunza':     { bg: '#EA580CCC', border: '#C2410C' },
